@@ -1,0 +1,51 @@
+* Finns många addResult()-metoder i flera olika klasser som ser likadana ut. Frågan är om inte events och participants ska läggas till 
+	i resultatets konstruktor?
+* Saknas väldigt mycket validering av användarinput. Fixa.
+* Se till att Result får vettiga utskriftsmetoder. De är lite random just nu.
+* Frågan är om event ska plocka fram resultat direkt från Resultat eller från varje Participant.
+* Man skulle kunna låta Result representera hela resultatet för en gren. Men det kanske blir ologiskt, borde inte det vara kopplat till grenen?
+	Detta påverkar ju var en eventuell sorteringsfunktion ska finnas.
+* Läs på om hur det där jäkla comparatorinterfacet funkar. Användbart, men wtf?
+* refaktorera Result.compareTo, jäkligt plottrig som den är just nu. Blir switch statement verkligen bättre? Dela upp i två metoder?
+* Döp om Event.getBiggerBetter till Event.biggerIsBetter?
+* Distinktionen mellan klassen Result och instansvariabeln result är diffus. Hitta på bättre namn?
+* Achievee är ett dåligt variabelnamn.
+* När olika objekt skapas läggs de in på flera ställen samtidigt. Kan man skapa kopplingar mellan objekt i konstruktorer? 
+  Har ändrat så att resultat associeras med deltagare och event genom Results konstruktor, samt
+  att en deltagare associeras med team genom participants konstruktor. Finns det flera ställen där detta bör ske? Medaljer ex.?
+* Fundera över hur programmet avslutas
+* Skippa switch-statement, använd array i handleCommand() istället
+* Fundera på om inte Result endast ska associeras med deltagare. Det skulle vara mycket mer logiskt om
+  resultat automatiskt försvann när en Participant tas bort. Skulle förmodligen leda till
+  mer konsekvent kod om man alltid fick tag i ett resultat via en Participant. Det är också ineffektivt att spara
+  samma resultat hos både eventet och deltagaren, även om det iofs är logiskt eftersom ett resultat är associerat lika
+  mycket med en deltagere som ett event. Klurigt.
+* Ändra alla traditionella for-loopar till foreachloopar där det går.
+* Skriv en input handlerklass men input- och normalize/formatteringsmetoder.
+* Läs på om interface, finns i boken
+Att dela ut medaljer:
+ * En medalj är associerad med ett Team.
+ * En medalj är associerad med ett Event.
+ * Det aktuella antalet medaljer för varje Team måste räknas ut dynamiskt baserat på de resultat
+ * som för tillfället är registrerade när man skriver teams som kommando.
+   Annars är det omöjligt att veta när de ska delas ut.
+ * Algoritm:
+   * Sortera resultat
+   * Dela ut guldmedalj till det lag vars deltagare ligger på första plats
+   * Dela ut silvermedalj till det lag vars deltagare ligger på andra plats
+   * Dela ut bronsmedalj till det lav vars deltagare ligger på tredje plats
+   
+   Jag har valt att skapa en Medalklass. Detta kändes logiskt eftersom en medalj är något som ett Team har
+   och som har en association till både ett team och ett event. Det kändes dumt att associera medaljer endast till Event,
+   eftersom Team inte skulle ha någon koppling till dem och man skulle sortera ett Teams åstadkommanden genom event.
+   När man ska outputa medaljer ska man alltså sortera Event på guldmedaljer, och inte Team. Ologiskt.
+   För att kunna kolla om ett team redan har en medalj i en viss gren känns det också överlägset mest logiskt att kolla
+   vilken gren en viss medalj tagits i. 
+   
+* Varför jag valde att lägga till lagmedlem i participantkonstruktor:
+	* Det nuvarande upplägget skapar teamet först så att det ska kunna passas till participantkonstruktorn,
+	  det är alltså inte möjligt att skicka participanten till createTeam() så att denne kan läggas till som medlem, eftersom denne inte finns
+	  vid tidpunkten för teamets eventuella skapande. Detta hade annars varit logiskt.
+	* För att på ett bra sätt fånga både fallet där ett team inte finns sedan innan och där det finns sedan innan
+	  blev det alltså enklast att skapa teamet först, ifall det inte finns, och sedan skapa participanten (som ju garanterat inte
+	  redan finns ifall metoden körs) och där lägga till participanten som medlem.

@@ -1,0 +1,55 @@
+message Adding Ada Lovelace
+add participant
+ada
+lovelace
+computing
+message Adding event Long Jump
+add event
+long jump
+3
+y
+message Adding result for Ada Lovelace in Long Jump
+add result
+100
+long jump
+6,7
+message Assigning medals
+teams
+message Adding Arthur Dent
+add participant
+arthur
+dent
+sf
+message Adding result for Arthur Dent in long jump
+add result
+101
+long jump
+6,8
+message Assigning medals
+teams
+message Adding Jöns
+add participant
+Jöns
+Jönsson
+Historien
+message Adding result for Jöns in long jump
+add result
+102
+long jump
+6,9
+message Assigning medals
+teams
+message Adding Obama
+add participant
+barack
+obama
+presidents
+message Adding result for Obama in long jump
+add result
+103
+long jump
+7,0
+message Assigning medals
+teams
+exit
+exit
