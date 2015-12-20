@@ -4,7 +4,7 @@ public class InputHandler {
 	
 	private Scanner scanner = new Scanner(System.in);
 
-	private int readInt(String leadText) {
+	public int readInt(String leadText) {
 
 		System.out.print(leadText);
 		int number = scanner.nextInt();
@@ -15,7 +15,7 @@ public class InputHandler {
 
 	}
 	
-	private int readAttemptsAllowed() {
+	public int readAttemptsAllowed() {
 		
 		int attemptsAllowed = readInt("Attempts allowed: ");
 		
@@ -27,8 +27,16 @@ public class InputHandler {
 		return attemptsAllowed;
 		
 	}
+	
+	public int readStartNumber() {
+		
+		int startNumber = readInt("Participant's start number: ");
+		
+		return startNumber;
+		
+	}
 
-	private double readDouble(String leadText) {
+	public double readDouble(String leadText) {
 
 		System.out.print(leadText);
 		double number = scanner.nextDouble();
@@ -39,15 +47,41 @@ public class InputHandler {
 
 	}
 
-	private String readString(String leadText) {
+	public String readString(String leadText) {
 
 		System.out.print(leadText);
 		return scanner.nextLine();
 
 	}
 	
+	public String readName(String leadText) {
+		
+		String name = readString(leadText);
+		
+		while(name.trim().length() == 0) {
+			
+			System.out.println("Names can't be empty!");
+			name = readString(leadText);
+			
+		}
+		
+		name = normalizeString(name);
+		
+		return name;
+		
+	}
+	
+	public String readEventName() {
+		
+		String eventName = readName("Event name: ");
+		eventName = normalizeString(eventName);
+		
+		return eventName;
+		
+	}
+	
 	//Frågan är om det där variabelnamnet verkligen är så bra...
-	private String normalizeString(String stringToBeNormalized) {
+	public String normalizeString(String stringToBeNormalized) {
 		
 		stringToBeNormalized = stringToBeNormalized.trim();
 		stringToBeNormalized = stringToBeNormalized.toLowerCase();
@@ -60,5 +94,24 @@ public class InputHandler {
 		return normalizedString;
 	}
 	
+	public boolean readBiggerBetter() {
+		
+		String biggerBetter = readString("Bigger better? (Y/N): ").toLowerCase();
+				
+		while(true) {
+			switch(biggerBetter) {
+
+			case "y":
+			case "yes":
+				return true;
+			case "n":
+			case "no":
+				return false;
+			default:
+				biggerBetter = readString("Valid answers are either \"y\" or \"n\". Bigger better?: ").toLowerCase();
+				
+			}
+		}
+	}
 	
 }

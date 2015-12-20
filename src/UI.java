@@ -1,177 +1,12 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class UI {
 	
 	private static final int MESSAGE_BOX_WIDTH = 60;
 	
-	Scanner scanner = new Scanner(System.in);
-	IdrottsTävling idrottsTävling = new IdrottsTävling();
-	
-	int participantCounter = 100;
-	
-	private int readInt(String leadText) {
+	private InputHandler inputHandler = new InputHandler();
+	private IdrottsTävling idrottsTävling = new IdrottsTävling();
 
-		System.out.print(leadText);
-		int number = scanner.nextInt();
-
-		scanner.nextLine();
-
-		return number;
-
-	}
-	
-	private int readAttemptsAllowed() {
-		
-		int attemptsAllowed = readInt("Attempts allowed: ");
-		
-		while(attemptsAllowed <= 0) {
-			
-			attemptsAllowed = readInt("Invalid number of attempts. Please enter an integer greater than zero: ");
-		}
-		
-		return attemptsAllowed;
-		
-	}
-
-	private double readDouble(String leadText) {
-
-		System.out.print(leadText);
-		double number = scanner.nextDouble();
-
-		scanner.nextLine();
-
-		return number;
-
-	}
-
-	private String readString(String leadText) {
-
-		System.out.print(leadText);
-		return scanner.nextLine();
-
-	}
-	
-	//Frågan är om det där variabelnamnet verkligen är så bra...
-	private String normalizeString(String stringToBeNormalized) {
-		
-		stringToBeNormalized = stringToBeNormalized.trim();
-		stringToBeNormalized = stringToBeNormalized.toLowerCase();
-		
-		String upperCaseFirstLetter = stringToBeNormalized.substring(0, 1).toUpperCase();
-		String stringToBeNormalizedWithoutFirstLetter = stringToBeNormalized.substring(1);
-		
-		String normalizedString = upperCaseFirstLetter + stringToBeNormalizedWithoutFirstLetter;
-		
-		return normalizedString;
-	}
-	
-	private String readName(String leadText) {
-		
-		String name = readString(leadText);
-		
-		while(name.trim().length() == 0) {
-			
-			System.out.println("Names can't be empty!");
-			name = readString(leadText);
-			
-		}
-		
-		name = normalizeString(name);
-		
-		return name;
-		
-	}
-	
-	private String readEventName() {
-		
-		String eventName = readName("Event name: ");
-		eventName = normalizeString(eventName);
-		
-		return eventName;
-		
-	}
-	
-	
-	private Event readEvent() {
-		
-		String eventName = readString("Name of the event: ");
-		Event event = getEvent(eventName);
-		
-		return event;
-		
-	}
-	
-	private boolean readBiggerBetter() {
-		
-		String biggerBetter = readString("Bigger better? (Y/N): ").toLowerCase();
-				
-		while(true) {
-			switch(biggerBetter) {
-
-			case "y":
-			case "yes":
-				return true;
-			case "n":
-			case "no":
-				return false;
-			default:
-				biggerBetter = readString("Valid answers are either \"y\" or \"n\". Bigger better?: ").toLowerCase();
-				
-			}
-		}
-	}
-	
-	
-	/*
-	 * Den här borde throwa exception om den inte hittar en Participant.
-	 * Skulle göra det möjligt att ta bort massa fula if(participant==null){return;} statements i kod längre ner 
-	 * 
-	 */
-	private int readStartNumber() {
-		
-		int startNumber = readInt("Participant's start number: ");
-		
-		return startNumber;
-		
-	}
-	
-	
-	private void initialize() {
-		
-		/*addParticipant("John", "Lennon", "Brynäs");
-		addParticipant("Ringo", "Starr", "Luleå");
-		addParticipant("Paul", "McCartney", "Brynäs");
-		
-		Event e1 = new Event("Höjdhopp", 3, true);
-		Event e2 = new Event("Kulstötning", 3, false);
-		Event e3 = new Event("Spjut", 3, true);
-		events.add(e1);
-		events.add(e2);
-		events.add(e3);
-		
-		addResult(100, "Höjdhopp", 2.0);
-		addResult(100, "Höjdhopp", 1.5);
-		addResult(100, "Höjdhopp", 1.8);
-		addResult(101, "Höjdhopp", 1.0);
-		addResult(102, "Höjdhopp", 0.5);
-		addResult(100, "Kulstötning", 10.4);
-		addResult(101, "Kulstötning", 10.1);
-		addResult(100, "Spjut", 6.0);
-		addResult(101, "Spjut", 7.0);
-		
-		e1.assignMedals();
-		e2.assignMedals();
-		e3.assignMedals();*/
-		
-//		addParticipant("Ada", "Lovelace", "Computing");
-//		events.add(new Event("Long jump", 3, true));
-//		addResult(100, "Long jump", 6.7);
-		
-	}
-	
-	
 	private void printMenu() {
 		
 		String[] commands = {"add event", 
@@ -198,12 +33,12 @@ public class UI {
 	 * idrottsTävling.addEvent() bör heller inte sköta output.
 	 * 
 	 */
-	
+
 	private void addEvent() {
 		
-		String eventName = readEventName();		
-		int attemptsAllowed = readAttemptsAllowed();
-		boolean biggerBetter = readBiggerBetter();
+		String eventName = inputHandler.readEventName();		
+		int attemptsAllowed = inputHandler.readAttemptsAllowed();
+		boolean biggerBetter = inputHandler.readBiggerBetter();
 		
 		idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter);
 		
@@ -217,24 +52,17 @@ public class UI {
 	 */
 	private Event getEvent(String eventName) {
 		
-		eventName = normalizeString(eventName);
+		eventName = inputHandler.normalizeString(eventName);
 		
 		return idrottsTävling.getEvent(eventName);
 		
 	}
 	
-	
-	private Team getTeam(String teamName) {
-		
-		return idrottsTävling.getTeam(teamName);
-		
-	}
-	
 	private void addParticipant() {
 		
-		String firstName = readName("First name: ");
-		String lastName = readName("Last Name: ");
-		String teamName = readName("Team name: ");
+		String firstName = inputHandler.readName("First name: ");
+		String lastName = inputHandler.readName("Last Name: ");
+		String teamName = inputHandler.readName("Team name: ");
 		
 		idrottsTävling.addParticipant(firstName, lastName, teamName);
 		
@@ -242,10 +70,9 @@ public class UI {
 		
 	}
 	
-	
 	private void removeParticipant() {
 			
-		int startNumber = readStartNumber();
+		int startNumber = inputHandler.readStartNumber();
 		
 		try {
 			
@@ -270,16 +97,16 @@ public class UI {
 	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult.
 	private void addResult() {
 		
-		int achieveeStartNumber = readStartNumber();
+		int achieveeStartNumber = inputHandler.readStartNumber();
 		
-		String eventAchievedIn = readName("Event name: ");
+		String eventAchievedIn = inputHandler.readName("Event name: ");
 		
-		double theActualResult = readDouble("Result: ");
+		double theActualResult = inputHandler.readDouble("Result: ");
 		
 		while(theActualResult < 0) {
 			
 			System.out.println("Invalid result. Please enter a value greater than or equal to 0.");
-			theActualResult = readDouble("Result: ");
+			theActualResult = inputHandler.readDouble("Result: ");
 		}
 		
 		idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult);
@@ -288,30 +115,26 @@ public class UI {
 		
 	}
 	
-	
 	private void listResultsByParticipant() {
 		
-		int startNumber = readStartNumber();
+		int startNumber = inputHandler.readStartNumber();
 		
 		idrottsTävling.listResultsByParticipant(startNumber);
 		
 	}
 	
-	
 	private void listResultsByEvent(String eventName) {
 		
-		eventName = normalizeString(eventName);
+		eventName = inputHandler.normalizeString(eventName);
 		idrottsTävling.listResultsByEvent(eventName);
 		
 	}
-	
 	
 	private void listResultsByTeam() {
 		
 		idrottsTävling.listResultsByTeam();
 		
 	}
-	
 	
 	private void printMessage(String message) {
 		
@@ -362,11 +185,9 @@ public class UI {
 		
 	}
 
-	
-	
 	private void listMembersOfTeam() {
 		
-		String teamName = readString("Team name: ");
+		String teamName = inputHandler.readString("Team name: ");
 		idrottsTävling.listMembersOfTeam(teamName);
 		
 	}
@@ -446,7 +267,7 @@ public class UI {
 		
 		while(true) {
 			
-			String command = readString("What would you like to do?\n> ");
+			String command = inputHandler.readString("What would you like to do?\n> ");
 			handleCommand(command); //den här bör returnera boolean för att avsluta programmet
 			
 		}
@@ -457,7 +278,6 @@ public class UI {
 		
 		UI ui = new UI();
 		
-		ui.initialize();
 		ui.run();
 
 	}
