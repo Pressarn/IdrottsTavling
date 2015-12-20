@@ -2,16 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class IdrottsTävling {
+public class UI {
 	
 	private static final int MESSAGE_BOX_WIDTH = 60;
 	
-	private ArrayList<Event> events = new ArrayList<>();
-	private ArrayList<Team> teams = new ArrayList<>();
-	private ArrayList<Participant> participants = new ArrayList<>();
-	private ArrayList<Result> results = new ArrayList<>();
-	
 	Scanner scanner = new Scanner(System.in);
+	IdrottsTävling idrottsTävling = new IdrottsTävling();
 	
 	int participantCounter = 100;
 	
@@ -91,6 +87,7 @@ public class IdrottsTävling {
 	private String readEventName() {
 		
 		String eventName = readName("Event name: ");
+		eventName = normalizeString(eventName);
 		
 		return eventName;
 		
@@ -132,13 +129,11 @@ public class IdrottsTävling {
 	 * Skulle göra det möjligt att ta bort massa fula if(participant==null){return;} statements i kod längre ner 
 	 * 
 	 */
-	private Participant readStartNumber() {
+	private int readStartNumber() {
 		
 		int startNumber = readInt("Participant's start number: ");
 		
-		Participant participant = getParticipant(startNumber);
-		
-		return participant;
+		return startNumber;
 		
 	}
 	
@@ -198,27 +193,21 @@ public class IdrottsTävling {
 		
 	}
 	
+	/*
+	 * Refaktorera, man ska inte behöva skriva in alla värden innan man får reda på om eventet redan finns.
+	 * idrottsTävling.addEvent() bör heller inte sköta output.
+	 * 
+	 */
 	
 	private void addEvent() {
 		
-		String eventName = readEventName();
+		String eventName = readEventName();		
+		int attemptsAllowed = readAttemptsAllowed();
+		boolean biggerBetter = readBiggerBetter();
 		
-		if(getEvent(eventName) == null) {
-			
-			int attemptsAllowed = readAttemptsAllowed();
-			boolean biggerBetter = readBiggerBetter();
-			
-			events.add(new Event(eventName, attemptsAllowed, biggerBetter));
-			System.out.println(eventName + " added");
-			
-		} else {
-			
-			System.out.println("An event with that name already exists.");
-			
-		}
+		idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter);
 		
 	}
-	
 	
 	/*
 	 * Fundera över om normalizeEvent verkligen ska ligga här, den gör att allt som kommer 
@@ -230,39 +219,14 @@ public class IdrottsTävling {
 		
 		eventName = normalizeString(eventName);
 		
-		for(Event event : events) {
-			
-			if(event.getName().equals(eventName)) {
-				
-				return event;
-				
-			}
-			
-		}
-		return null;
+		return idrottsTävling.getEvent(eventName);
 		
 	}
 	
 	
 	private Team getTeam(String teamName) {
 		
-		for(int i = 0; i < teams.size(); i++) {
-			
-			if(teams.get(i).getName().equals(teamName)) {
-				
-				return teams.get(i);
-				
-			}
-			
-		}
-		return null;
-		
-	}
-	
-	
-	private void createTeam(String teamName) {
-		
-		teams.add(new Team(teamName));
+		return idrottsTävling.getTeam(teamName);
 		
 	}
 	
@@ -272,87 +236,26 @@ public class IdrottsTävling {
 		String lastName = readName("Last Name: ");
 		String teamName = readName("Team name: ");
 		
-		Team team = getTeam(teamName);
-		
-		if(team == null) {
-			createTeam(teamName);
-			team = getTeam(teamName);
-		}
-		
-		Participant participant = new Participant(firstName, lastName, team, participantCounter) ;
-		participants.add(participant);
-		
-		participantCounter++;
+		idrottsTävling.addParticipant(firstName, lastName, teamName);
 		
 		System.out.println("Participant added");
-		
-	}
-	
-	
-	private void addParticipant(String firstName, String lastName, String teamName) {
-		
-		Team team = getTeam(teamName);
-		
-		if(team == null) {
-			createTeam(teamName);
-			team = getTeam(teamName);
-		}
-		
-		Participant participant = new Participant(firstName, lastName, team, participantCounter) ;
-		participants.add(participant);
-		team.addMember(participant);
-		
-		participantCounter++;
-		
-		System.out.println("Participant added");
-		
-	}
-	
-	
-	private Participant getParticipant(int startNumber) {
-
-		for(int i = 0; i < participants.size(); i++) {
-			
-			if(participants.get(i).getStartNumber() == startNumber) {
-				
-				return participants.get(i);
-				
-			}
-				
-		}
-		return null;
 		
 	}
 	
 	
 	private void removeParticipant() {
 			
-		Participant participant = readStartNumber();
+		int startNumber = readStartNumber();
 		
-		if(participant == null) {
+		try {
 			
-			System.out.println("Couldn't find a participant with that start number.");
+			idrottsTävling.removeParticipant(startNumber);
+			
+		} catch(NullPointerException e) {
+			
+			System.out.println("Couldn't find a participant with that startnumber");
 			return;
 			
-		}
-		
-		for(Event e : events) {
-			
-			e.removeParticipantsResults(participant);
-			
-		}
-		
-		Team participantsTeam = participant.getTeam();
-		participantsTeam.removeMember(participant);
-		
-		participants.remove(participant);
-		
-		System.out.println("Participant removed.");
-		
-		if(participantsTeam.hasNoMembers()) {
-
-			teams.remove(participantsTeam);
-		
 		}
 		
 	}
@@ -367,31 +270,9 @@ public class IdrottsTävling {
 	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult.
 	private void addResult() {
 		
-		Participant achievee = readStartNumber();
+		int achieveeStartNumber = readStartNumber();
 		
-		if(achievee == null) {
-			
-			System.out.println("Couldn't find a participant with that start number.");
-			return;
-			
-		}
-		
-		Event eventAchievedIn = readEvent();
-		
-		if(eventAchievedIn == null) {
-			
-			System.out.println("Couldn't find an event with that name");
-			return;
-			
-		}
-		
-		if(achievee.hasReachedMaximumNumberOfAttempts(eventAchievedIn)) {
-			
-			System.out.println(
-					"The participant has already reached the maximum number of attempts allowed for that event.");
-			return;
-			
-		}
+		String eventAchievedIn = readName("Event name: ");
 		
 		double theActualResult = readDouble("Result: ");
 		
@@ -401,21 +282,8 @@ public class IdrottsTävling {
 			theActualResult = readDouble("Result: ");
 		}
 		
-		results.add(new Result(theActualResult, achievee, eventAchievedIn));
+		idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult);
 		
-		System.out.println("Result added.");
-		
-	}
-	
-	
-	private void addResult(int startNumber, String eventName, double theActualResult) {
-		
-		Participant achievee = getParticipant(startNumber);
-		Event eventAchievedIn = getEvent(eventName);
-		
-		Result result = new Result(theActualResult, achievee, eventAchievedIn);
-		achievee.addResult(result);
-		eventAchievedIn.addResult(result);
 		System.out.println("Result added.");
 		
 	}
@@ -423,43 +291,24 @@ public class IdrottsTävling {
 	
 	private void listResultsByParticipant() {
 		
-		Participant participant = readStartNumber();
+		int startNumber = readStartNumber();
 		
-		if(participant == null) {
-			
-			System.out.println("Couldn't find a participant with that start number.");
-			return;
-			
-		}
-		
-		participant.listResultsSortedByName();
+		idrottsTävling.listResultsByParticipant(startNumber);
 		
 	}
 	
 	
 	private void listResultsByEvent(String eventName) {
 		
-		Event event = getEvent(eventName);
-		event.listResults();
+		eventName = normalizeString(eventName);
+		idrottsTävling.listResultsByEvent(eventName);
 		
 	}
 	
 	
 	private void listResultsByTeam() {
 		
-		for(Event event: events) {
-			
-			event.assignMedals();
-			
-		}
-		
-		Collections.sort(teams);
-		
-		for(Team team : teams) {
-			
-			System.out.println(team.getMedals());
-			
-		}
+		idrottsTävling.listResultsByTeam();
 		
 	}
 	
@@ -512,47 +361,13 @@ public class IdrottsTävling {
 		}
 		
 	}
-	
-	
-	private void listParticipants() {
-		
-		for(int i = 0; i < participants.size(); i++) {
-				
-				System.out.println(participants.get(i));
-			
-		}
-		
-	}
-	
-	
-	private void listEvents() {
-		
-		for(int i = 0; i < events.size(); i++) {
-			
-			System.out.println(events.get(i));
-		
-		}
-		
-	}
-	
-	
-	private void listTeams() {
-		
-		for(int i = 0; i < teams.size(); i++) {
-			
-			System.out.println(teams.get(i));
-			
-		}
-		
-	}
+
 	
 	
 	private void listMembersOfTeam() {
 		
 		String teamName = readString("Team name: ");
-		Team team = getTeam(teamName);
-
-		team.listMembers();
+		idrottsTävling.listMembersOfTeam(teamName);
 		
 	}
 	
@@ -593,13 +408,13 @@ public class IdrottsTävling {
 				printMenu();
 				break;
 			case "list participants":
-				listParticipants();
+				idrottsTävling.listParticipants();
 				break;
 			case "list events":
-				listEvents();
+				idrottsTävling.listEvents();
 				break;
 			case "list teams":
-				listTeams();
+				idrottsTävling.listTeams();
 				break;
 			case "list members of team":
 				listMembersOfTeam();
@@ -640,10 +455,10 @@ public class IdrottsTävling {
 	
 	public static void main(String[] args) {
 		
-		IdrottsTävling idrottsTävling = new IdrottsTävling();
+		UI ui = new UI();
 		
-		idrottsTävling.initialize();
-		idrottsTävling.run();
+		ui.initialize();
+		ui.run();
 
 	}
 
