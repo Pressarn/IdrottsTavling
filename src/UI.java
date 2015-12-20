@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -94,13 +95,12 @@ public class UI {
 	 * Fixade det genom att introducera en resultatarraylist i programmet, men var det verkligen bra? Är det inte bättre att
 	 * bara spara resultatet hos participant och event?
 	 */
-	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult.
+	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult. Frågan är om inte storlekschecken ska ske redan
+	// hos participanten
 	private void addResult() {
 		
 		int achieveeStartNumber = inputHandler.readStartNumber();
-		
-		String eventAchievedIn = inputHandler.readName("Event name: ");
-		
+		String eventAchievedIn = inputHandler.readEventName();
 		double theActualResult = inputHandler.readDouble("Result: ");
 		
 		while(theActualResult < 0) {
@@ -109,9 +109,16 @@ public class UI {
 			theActualResult = inputHandler.readDouble("Result: ");
 		}
 		
-		idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult);
-		
-		System.out.println("Result added.");
+		if(idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
+			
+			System.out.println("Result added.");
+			
+		} else {
+			
+			System.out.println(
+					"The participant has already reached the maximum number of attempts allowed for that event.");
+			
+		}
 		
 	}
 	
@@ -119,14 +126,37 @@ public class UI {
 		
 		int startNumber = inputHandler.readStartNumber();
 		
-		idrottsTävling.listResultsByParticipant(startNumber);
+		ArrayList<Result> participantsResults = idrottsTävling.getResultsByParticipant(startNumber);
+		
+		if(participantsResults.size() == 0) {
+			
+			System.out.println("That participant has no results");
+			
+		} else {
+		
+			for(Result result : participantsResults) {
+			
+				System.out.println(result);
+				
+			}
+			
+		}
 		
 	}
 	
 	private void listResultsByEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
-		idrottsTävling.listResultsByEvent(eventName);
+		ArrayList<Result> eventsResults = idrottsTävling.listResultsByEvent(eventName);
+		
+		System.out.println(eventName + ":");
+		
+		for(Result result : eventsResults) {
+			
+			System.out.println(result.getResult() + ", " + result.getAchievee().getFullName());
+			System.out.println(result.getAchievee().getTeam().getName());
+			
+		}
 		
 	}
 	
@@ -188,7 +218,15 @@ public class UI {
 	private void listMembersOfTeam() {
 		
 		String teamName = inputHandler.readString("Team name: ");
-		idrottsTävling.listMembersOfTeam(teamName);
+		ArrayList<Participant> teamsMembers = idrottsTävling.getMembersOfTeam(teamName);
+		
+		System.out.println("Members of team " + teamName + ":");
+		
+		for(Participant member : teamsMembers) {
+			
+			System.out.println(member);
+			
+		}
 		
 	}
 	

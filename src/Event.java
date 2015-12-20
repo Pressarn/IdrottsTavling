@@ -52,11 +52,11 @@ public class Event {
 	
 	public void removeParticipantsResults(Participant participant) {
 		
-		for(int i = 0; i < results.size(); i++) {
+		for(Result result : results) {
 			
-			if(results.get(i).getAchievee() == participant) {
+			if(result.getAchievee() == participant) {
 				
-				results.remove(results.get(i));
+				results.remove(result);
 				
 			}
 			
@@ -138,20 +138,11 @@ public class Event {
 		
 	}
 	
-	public void listResults() {
-		
-		System.out.println(name + ":");
+	public ArrayList<Result> getSortedResults() {
 		
 		Collections.sort(results);
 		
-		for(int i = 0; i < results.size(); i++) {
-			
-			Result result = results.get(i);
-			
-			System.out.println(result.getResult() + ", " + result.getAchievee().getFullName());
-			System.out.println(result.getAchievee().getTeam().getName());
-			
-		}
+		return results;
 		
 	}
 	

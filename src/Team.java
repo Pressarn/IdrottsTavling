@@ -34,13 +34,9 @@ public class Team implements Comparable<Team> {
 	  
   }
   
-  public void listMembers() {
-	  System.out.println("Members of team " + name + ":");
-	  for(int i = 0; i < members.size(); i++) {
-		  
-		  System.out.println("* " + members.get(i));
-		  
-	  }
+  public ArrayList<Participant> getMembers() {
+	  
+	  return members;
 	  
   }
   

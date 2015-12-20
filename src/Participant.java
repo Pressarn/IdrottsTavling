@@ -61,9 +61,9 @@ public class Participant {
 		
 		int numberOfResultsForEvent = 0;
 		
-		for(int i = 0; i < results.size(); i++) {
+		for(Result result : results) {
 			
-			if(results.get(i).getAchievedIn().getName().equals(event.getName())) {
+			if(result.getAchievedIn().getName().equals(event.getName())) {
 				
 				numberOfResultsForEvent++;
 				
@@ -83,13 +83,7 @@ public class Participant {
 	}
 	
 	//Refaktorera, kolla in om lambda-uttryck kan vara en bättre lösning än att skicka in Comparator här
-	public void listResultsSortedByName() {
-		
-		if(results.size() == 0) {
-			
-			System.out.println(firstName + " " + lastName + " has no registered results");
-			
-		}
+	public ArrayList<Result> getResultsSortedByName() {
 		
 		//Överlagrar den vanliga sorteringsordningen hos Result.
 		Collections.sort(results, new Comparator<Result>() {
@@ -105,11 +99,7 @@ public class Participant {
 			
 		});
 		
-		for(Result result : results) {
-			
-			System.out.println(result);
-			
-		}
+		return results;
 		
 	}
 	
