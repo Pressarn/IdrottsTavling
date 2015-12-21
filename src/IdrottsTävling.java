@@ -6,7 +6,7 @@ public class IdrottsTävling {
 	private ArrayList<Event> events = new ArrayList<>();
 	private ArrayList<Team> teams = new ArrayList<>();
 	//private ArrayList<Participant> participants = new ArrayList<>();
-	private ArrayList<Result> results = new ArrayList<>();
+	//private ArrayList<Result> results = new ArrayList<>();
 	
 	private int participantCounter = 100;	
 	
@@ -141,7 +141,7 @@ public class IdrottsTävling {
 			
 		} else {
 			
-			results.add(new Result(result, achievee, eventAchievedIn));
+			achievee.addResult(new Result(result, achievee, eventAchievedIn));
 			return true;
 			
 		}

@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Result" project="IdrottsTävling" file="/IdrottsTävling/src/Result.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1254" y="879"/>    
+    <position height="-1" width="-1" x="1383" y="501"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Event" project="IdrottsTävling" file="/IdrottsTävling/src/Event.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1470" y="364"/>    
+    <position height="-1" width="-1" x="1687" y="502"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -74,198 +74,184 @@
     </display>  
   </class>  
   <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="achievedBy">        
-        <position height="0" width="0" x="-877" y="464"/>      
-      </attribute>      
-      <multiplicity id="11" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-877" y="464"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
     <end type="SOURCE" refId="3" navigable="true">      
-      <attribute id="13" name="results">        
-        <position height="0" width="0" x="30" y="314"/>      
+      <attribute id="10" name="results">        
+        <position height="0" width="0" x="159" y="-64"/>      
       </attribute>      
-      <multiplicity id="14" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="30" y="314"/>      
+      <multiplicity id="11" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="159" y="-64"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="15" name="achievee">        
+      <attribute id="12" name="achievee">        
         <position height="18" width="52" x="904" y="353"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
+      <multiplicity id="13" minimum="0" maximum="1">        
         <position height="0" width="0" x="-307" y="-407"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
+  <association id="14">    
+    <bendpoint x="1692" y="70"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="18" name="events"/>      
-      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+      <attribute id="15" name="events"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <bendpoint x="1055" y="551"/>    
+  <association id="17">    
+    <bendpoint x="1597" y="844"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="21" name="goldMedal">        
+      <attribute id="18" name="goldMedal">        
         <position height="18" width="56" x="925" y="1027"/>      
       </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
+      <multiplicity id="19" minimum="0" maximum="1">        
         <position height="0" width="0" x="-173" y="743"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
+  <association id="20">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="24" name="teams"/>      
-      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
+      <attribute id="21" name="teams"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="26">    
+  <association id="23">    
     <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="27" name="results">        
-        <position height="18" width="41" x="1122" y="864"/>      
+      <attribute id="24" name="results">        
+        <position height="18" width="41" x="1251" y="486"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="1141" y="884"/>      
+      <multiplicity id="25" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="1270" y="506"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="29" name="achievedIn">        
-        <position height="18" width="60" x="1589" y="306"/>      
+      <attribute id="26" name="achievedIn">        
+        <position height="18" width="60" x="1806" y="444"/>      
       </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
-        <position height="16" width="23" x="1590" y="325"/>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="16" width="23" x="1807" y="463"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
+  <association id="28">    
     <end type="SOURCE" refId="2" navigable="true">      
-      <attribute id="32" name="bronzeMedals">        
+      <attribute id="29" name="bronzeMedals">        
         <position height="0" width="0" x="-173" y="743"/>      
       </attribute>      
-      <multiplicity id="33" minimum="0" maximum="2147483647">        
+      <multiplicity id="30" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="-173" y="743"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true">      
-      <attribute id="34" name="owner">        
+      <attribute id="31" name="owner">        
         <position height="0" width="0" x="-877" y="464"/>      
       </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
+      <multiplicity id="32" minimum="0" maximum="1">        
         <position height="0" width="0" x="-877" y="464"/>      
       </multiplicity>    
     </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <bendpoint x="607" y="846"/>    
+    <bendpoint x="640" y="847"/>    
+    <bendpoint x="836" y="847"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="34" name="goldMedals">        
+        <position height="0" width="0" x="-173" y="743"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-173" y="743"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="36">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="37" name="goldMedals">        
-        <position height="0" width="0" x="-173" y="743"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-173" y="743"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
+    <bendpoint x="1684" y="911"/>    
     <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="40" name="bronzeMedal">        
+      <attribute id="37" name="bronzeMedal">        
         <position height="18" width="70" x="858" y="1024"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
+      <multiplicity id="38" minimum="0" maximum="1">        
         <position height="0" width="0" x="-173" y="743"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true">      
-      <attribute id="42" name="earnedIn">        
-        <position height="18" width="50" x="1588" y="220"/>      
+      <attribute id="39" name="earnedIn">        
+        <position height="18" width="50" x="1805" y="358"/>      
       </attribute>      
-      <multiplicity id="43" minimum="0" maximum="1">        
-        <position height="0" width="0" x="601" y="-298"/>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="818" y="-160"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="45" name="results"/>      
-      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <bendpoint x="919" y="342"/>    
+  <association id="41">    
+    <bendpoint x="1537" y="794"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="48" name="silverMedal">        
+      <attribute id="42" name="silverMedal">        
         <position height="0" width="0" x="-173" y="743"/>      
       </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
+      <multiplicity id="43" minimum="0" maximum="1">        
         <position height="0" width="0" x="-173" y="743"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="50">    
+  <association id="44">    
     <end type="SOURCE" refId="2" navigable="true">      
-      <attribute id="51" name="members">        
+      <attribute id="45" name="members">        
         <position height="0" width="0" x="-307" y="-407"/>      
       </attribute>      
-      <multiplicity id="52" minimum="0" maximum="2147483647">        
+      <multiplicity id="46" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="-307" y="-407"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true">      
-      <attribute id="53" name="myTeam">        
+      <attribute id="47" name="myTeam">        
         <position height="0" width="0" x="-877" y="464"/>      
       </attribute>      
-      <multiplicity id="54" minimum="0" maximum="1">        
+      <multiplicity id="48" minimum="0" maximum="1">        
         <position height="0" width="0" x="-877" y="464"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="55">    
+  <association id="49">    
+    <bendpoint x="590" y="913"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="56" name="silverMedals">        
+      <attribute id="50" name="silverMedals">        
         <position height="0" width="0" x="-173" y="743"/>      
       </attribute>      
-      <multiplicity id="57" minimum="0" maximum="2147483647">        
+      <multiplicity id="51" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="-173" y="743"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="58">    
+  <association id="52">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="59" name="inputHandler"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+      <attribute id="53" name="inputHandler"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="61">    
+  <association id="55">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="62" name="idrottsTävling"/>      
-      <multiplicity id="63" minimum="0" maximum="1"/>    
+      <attribute id="56" name="idrottsTävling"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

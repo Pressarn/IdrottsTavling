@@ -7,7 +7,6 @@ public class Event {
 	private int attemptsAllowed;
 	private boolean biggerBetter;
 
-	//private ArrayList<Participant> participants = new ArrayList<>();
 	private ArrayList<Result> results = new ArrayList<>();
 	
 	private Medal goldMedal;

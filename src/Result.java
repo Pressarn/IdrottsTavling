@@ -4,7 +4,6 @@ public class Result implements Comparable<Result>{
 
 	private Participant achievee;
 	private Event achievedIn;
-	private Team achievedBy;
 
 	public Result(double result, Participant achievee, Event achievedIn) {
 		

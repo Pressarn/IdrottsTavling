@@ -10,7 +10,6 @@ public class Participant {
 
 	private Team myTeam;
 	private ArrayList<Result> results = new ArrayList<>();
-	//public ArrayList<Event> events;
 	
 	public Participant(String firstName, String lastName, Team team, int startNumber) {
 		
