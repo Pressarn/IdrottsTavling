@@ -8,7 +8,6 @@ public class Team implements Comparable<Team> {
   ArrayList<Medal >bronzeMedals = new ArrayList<>();
   
   private ArrayList<Participant> members = new ArrayList<>();
-  //private ArrayList<Result> results = new ArrayList<>();
   
   public Team(String name) {
 	  

@@ -168,7 +168,13 @@ public class UI {
 	
 	private void listResultsByTeam() {
 		
-		idrottsTävling.listResultsByTeam();
+		ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
+		
+		for(Team team : teams) {
+			
+			System.out.println(team.getMedals());
+			
+		}
 		
 	}
 	
@@ -216,6 +222,18 @@ public class UI {
 				
 			}
 			System.out.println();
+			
+		}
+		
+	}
+	
+	private void listEvents() {
+		
+		ArrayList<Event> events = idrottsTävling.getEvents();
+		
+		for(Event event : events) {
+			
+			System.out.println(event);
 			
 		}
 		
@@ -272,11 +290,8 @@ public class UI {
 			case "print menu":
 				printMenu();
 				break;
-			case "list participants":
-				idrottsTävling.listParticipants();
-				break;
 			case "list events":
-				idrottsTävling.listEvents();
+				listEvents();
 				break;
 			case "list teams":
 				idrottsTävling.listTeams();

@@ -5,7 +5,7 @@ public class IdrottsTävling {
 
 	private ArrayList<Event> events = new ArrayList<>();
 	private ArrayList<Team> teams = new ArrayList<>();
-	private ArrayList<Participant> participants = new ArrayList<>();
+	//private ArrayList<Participant> participants = new ArrayList<>();
 	private ArrayList<Result> results = new ArrayList<>();
 	
 	private int participantCounter = 100;	
@@ -76,8 +76,7 @@ public class IdrottsTävling {
 			team = getTeam(teamName);
 		}
 		
-		Participant participant = new Participant(firstName, lastName, team, participantCounter) ;
-		participants.add(participant);
+		team.addMember(new Participant(firstName, lastName, team, participantCounter));
 		
 		participantCounter++;
 		
@@ -85,11 +84,15 @@ public class IdrottsTävling {
 	
 	public Participant getParticipant(int startNumber) {
 
-		for(Participant participant : participants) {
+		for(Team team : teams) {
 			
-			if(participant.getStartNumber() == startNumber) {
+			for(Participant member : team.getMembers()) {
+			
+				if(member.getStartNumber() == startNumber) {
 				
-				return participant;
+					return member;
+				
+				}
 				
 			}
 			
@@ -110,8 +113,6 @@ public class IdrottsTävling {
 		
 		Team participantsTeam = participant.getTeam();
 		participantsTeam.removeMember(participant);
-		
-		participants.remove(participant);
 		
 		if(participantsTeam.hasNoMembers()) {
 
@@ -162,7 +163,7 @@ public class IdrottsTävling {
 		
 	}
 	
-	public void listResultsByTeam() {
+	public ArrayList<Team> getResultsSortedByTeam() {
 		
 		for(Event event: events) {
 			
@@ -172,31 +173,13 @@ public class IdrottsTävling {
 		
 		Collections.sort(teams);
 		
-		for(Team team : teams) {
-			
-			System.out.println(team.getMedals());
-			
-		}
+		return teams;
 		
 	}
 	
-	public void listParticipants() {
+	public ArrayList<Event> getEvents() {
 		
-		for(int i = 0; i < participants.size(); i++) {
-				
-				System.out.println(participants.get(i));
-			
-		}
-		
-	}
-	
-	public void listEvents() {
-		
-		for(int i = 0; i < events.size(); i++) {
-			
-			System.out.println(events.get(i));
-		
-		}
+		return events;
 		
 	}
 	
