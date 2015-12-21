@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class IdrottsTävling {
+public class IdrottsTÃ¤vling {
 
 	private ArrayList<Event> events = new ArrayList<>();
 	private ArrayList<Team> teams = new ArrayList<>();
@@ -10,26 +10,25 @@ public class IdrottsTävling {
 	
 	private int participantCounter = 100;	
 	
-	//Refaktorera, bör inte sköta output.
-	public void addEvent(String eventName, int attemptsAllowed, boolean biggerBetter) {
+	public boolean addEvent(String eventName, int attemptsAllowed, boolean biggerBetter) {
 			
 		if(getEvent(eventName) == null) {
 			
 			events.add(new Event(eventName, attemptsAllowed, biggerBetter));
-			System.out.println(eventName + " added");
+			return true;
 			
 		} else {
 			
-			System.out.println("An event with that name already exists");
+			return false;
 			
 		}
 		
 	}
 	
 	/*
-	 * Fundera över om normalizeEvent verkligen ska ligga här, den gör att allt som kommer 
-	 * hit matchar det som finns lagrat vilket iofs är bra, men då kanske ett anrop till normalizeEvent
-	 * inte behövs i readEventName()?
+	 * Fundera Ã¶ver om normalizeEvent verkligen ska ligga hÃ¤r, den gÃ¶r att allt som kommer 
+	 * hit matchar det som finns lagrat vilket iofs Ã¤r bra, men dÃ¥ kanske ett anrop till normalizeEvent
+	 * inte behÃ¶vs i readEventName()?
 	 * 
 	 */
 	public Event getEvent(String eventName) {
@@ -123,13 +122,13 @@ public class IdrottsTävling {
 	}
 	
 	/*
-	 * Fundera över den här. Ändrade ju från att lagra hos både participant och event till att bara skapa ett resultat och
-	 * sköta associationerna i konstruktorn.
-	 * Dock tänkte jag ju inte över att jag bara instantierade ett nytt resultat utan att lagra det någonstans.
-	 * Fixade det genom att introducera en resultatarraylist i programmet, men var det verkligen bra? Är det inte bättre att
+	 * Fundera ï¿½ver den hï¿½r. ï¿½ndrade ju frï¿½n att lagra hos bï¿½de participant och event till att bara skapa ett resultat och
+	 * skï¿½ta associationerna i konstruktorn.
+	 * Dock tï¿½nkte jag ju inte ï¿½ver att jag bara instantierade ett nytt resultat utan att lagra det nï¿½gonstans.
+	 * Fixade det genom att introducera en resultatarraylist i programmet, men var det verkligen bra? ï¿½r det inte bï¿½ttre att
 	 * bara spara resultatet hos participant och event?
 	 */
-	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult. Fundera också över om inte if/else ska komma i omvänd ordning.
+	//Refaktorera, behï¿½ver resultat lï¿½ggas till pï¿½ tvï¿½ stï¿½llen? Samt Result och theActualResult? Fult. Fundera ocksï¿½ ï¿½ver om inte if/else ska komma i omvï¿½nd ordning.
 	public boolean addResult(int startNumber, String eventName, double result) {
 		
 		Participant achievee = getParticipant(startNumber);

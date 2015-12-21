@@ -30,6 +30,7 @@ public class UI {
 	
 	/*
 	 * Refaktorera, man ska inte behöva skriva in alla värden innan man får reda på om eventet redan finns.
+	 * idrottsTävling.addEvent() bör heller inte sköta output.
 	 * 
 	 */
 
@@ -39,15 +40,7 @@ public class UI {
 		int attemptsAllowed = inputHandler.readAttemptsAllowed();
 		boolean biggerBetter = inputHandler.readBiggerBetter();
 		
-		if(idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter)) {
-			
-			System.out.println(eventName + " added");
-			
-		} else {
-			
-			System.out.println("An event with that name already exists.");
-			
-		}
+		idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter);
 		
 	}
 	
