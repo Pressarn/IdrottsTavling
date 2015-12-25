@@ -7,20 +7,8 @@
  *
  */
 
-public class Medal {
+public enum Medal {
 
-	private String type;
-	
-	public Medal(String type) {
-		
-		this.type = type;
-		
-	}
-	
-	public String getType() {
-		
-		return type;
-		
-	}
+	GOLD, SILVER, BRONZE;
 	
 }

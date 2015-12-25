@@ -115,15 +115,15 @@ public class Participant {
 		
 		for(Result result : results) {
 			
-			switch(result.getMedal().getType()) {
+			switch(result.getMedal()) {
 			
-				case "Gold":
+				case GOLD:
 					medals.put("Gold medals", 1);
 					break;
-				case "Silver":
+				case SILVER:
 					medals.put("Silver medals", 1);
 					break;
-				case "Bronze":
+				case BRONZE:
 					medals.put("Bronze medals", 1);
 					break;
 			

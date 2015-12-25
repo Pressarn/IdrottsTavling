@@ -75,19 +75,19 @@ public class Event {
 		
 		if(results.size() > 0) {
 			
-			results.get(0).setMedal(new Medal("Gold"));
+			results.get(0).setMedal(Medal.GOLD);
 			
 		}
 		
 		if(results.size() > 1) {
 			
-			results.get(1).setMedal(new Medal("Silver"));
+			results.get(1).setMedal(Medal.SILVER);
 			
 		}
 		
 		if(results.size() > 2) {
 			
-			results.get(2).setMedal(new Medal("Bronze"));
+			results.get(2).setMedal(Medal.BRONZE);
 			
 		}
 		
