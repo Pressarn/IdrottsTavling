@@ -88,10 +88,10 @@ public class InputHandler {
 	 */
 	public String normalizeString(String stringToBeNormalized) {
 		
+		stringToBeNormalized = stringToBeNormalized.trim();
+		stringToBeNormalized = stringToBeNormalized.toLowerCase();
+		
 		try {
-			
-			stringToBeNormalized = stringToBeNormalized.trim();
-			stringToBeNormalized = stringToBeNormalized.toLowerCase();
 			
 			String upperCaseFirstLetter = stringToBeNormalized.substring(0, 1).toUpperCase();
 			String stringToBeNormalizedWithoutFirstLetter = stringToBeNormalized.substring(1);

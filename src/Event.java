@@ -65,15 +65,53 @@ public class Event {
 		 * 
 		 */
 		
+		ArrayList<Result> goldMedalResults = new ArrayList<>();
+		ArrayList<Result> silverMedalResults = new ArrayList<>();
+		ArrayList<Result> bronzeMedalResults = new ArrayList<>();
+		
 		Collections.sort(results);
 		
 		for(Result result : results) {
 			
 			result.setMedal(null);
 			
+			double theActualResult = result.getResult();
+			
+			if(theActualResult == results.get(0).getResult()) {
+				
+				goldMedalResults.add(result);
+				
+			} else if(theActualResult == results.get(1).getResult()) {
+				
+				silverMedalResults.add(result);
+				
+			} else if(theActualResult == results.get(2).getResult()) {
+				
+				bronzeMedalResults.add(result);
+				
+			}
+			
 		}
 		
-		if(results.size() > 0) {
+		for(Result goldMedalResult : goldMedalResults) {
+		
+			goldMedalResult.setMedal(Medal.GOLD);
+			
+		}
+		
+		for(Result silverMedalResult : silverMedalResults) {
+			
+			silverMedalResult.setMedal(Medal.SILVER);
+			
+		}
+
+		for(Result bronzeMedalResult : bronzeMedalResults) {
+	
+			bronzeMedalResult.setMedal(Medal.BRONZE);
+	
+		}
+		
+		/*if(results.size() > 0) {
 			
 			results.get(0).setMedal(Medal.GOLD);
 			
@@ -89,7 +127,7 @@ public class Event {
 			
 			results.get(2).setMedal(Medal.BRONZE);
 			
-		}
+		}*/
 		
 	}
 	

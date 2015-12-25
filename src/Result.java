@@ -37,7 +37,7 @@ public class Result implements Comparable<Result>{
 	public void setMedal(Medal medal) {
 		
 		this.medal = medal;
-		
+		//System.out.println(result + " resulted in " + this.medal + " in " + achievedIn + "\n" + achievee.getName());
 	}
 	
 	public Medal getMedal() {

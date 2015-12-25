@@ -106,7 +106,14 @@ public class Participant {
 		
 	}
 	
-	//Refaktorera
+	/* 
+	 * Refaktorera, ta reda på varför switch-statementet inte fungerar, kan det vara något med Integer?
+	 * Man kan testa att inte returnera HashMap utan skriva tre separata metoder.
+	 * Anledningen till att Participant använder en HashMap och att Team använder tre separata
+	 * variabler för medaljerna är att Participant behöver returnera medaljerna till Team, och det blir smidigast
+	 * att göra det med en funktion istället för tre. Team behöver inte returnera värderna utan behöver endast kunna
+	 * sorteras enligt dem, varför det är lättare att använda tre olika variabler för medaljerna där.
+	 */
 	public HashMap<String, Integer> getNumberOfMedals() {
 		
 		medals.put("Gold medals", 0);
@@ -115,19 +122,34 @@ public class Participant {
 		
 		for(Result result : results) {
 			
-			switch(result.getMedal()) {
+			Medal medal = result.getMedal();
 			
-				case GOLD:
-					medals.put("Gold medals", medals.get("Gold medals") + 1);
-					break;
-				case SILVER:
-					medals.put("Silver medals", medals.get("Silver medals") + 1);
-					break;
-				case BRONZE:
-					medals.put("Bronze medals", medals.get("Bronze medals") + 1);
-					break;
+			if(medal == Medal.GOLD) {
+				
+				medals.put("Gold medals", medals.get("Gold medals") + 1);
+				
+			} else if(medal == Medal.SILVER) {
 			
+				medals.put("Silver medals", medals.get("Silver medals") + 1);
+				
+			} else if(medal == Medal.BRONZE) {
+			
+				medals.put("Bronze medals", medals.get("Bronze medals") + 1);
+				
 			}
+			
+//			switch(medal) {
+//			
+//				case GOLD:
+//					medals.put("Gold medals", medals.get("Gold medals") + 1);
+//					break;
+//				case SILVER:
+//					medals.put("Silver medals", medals.get("Silver medals") + 1);
+//					break;
+//				case BRONZE:
+//					medals.put("Bronze medals", medals.get("Bronze medals") + 1);
+//					break;
+//			}
 			
 		}
 		return medals;

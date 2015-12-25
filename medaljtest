@@ -80,5 +80,19 @@ marathon
 4,59
 message Assigning medals
 teams
+message Adding result for Ada in Long Jump to test how program handles equal results
+add result
+100
+long jump
+7,0
+message Assigning medals
+teams
+message Adding result for Ada in Long Jump to test how program handles new winner
+add result
+100
+long jump
+7,1
+message Assigning medals
+teams
 exit
 exit
