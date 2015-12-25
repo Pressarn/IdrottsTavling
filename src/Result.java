@@ -52,7 +52,6 @@ public class Result implements Comparable<Result>{
 		
 	}
 	
-	
 	public int compareTo(Result anotherResult) {
 		
 		if(achievedIn.getBiggerBetter()){

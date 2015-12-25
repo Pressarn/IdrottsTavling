@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Team" project="IdrottsTävling" file="/IdrottsTävling/src/Team.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="590" y="571"/>    
+    <position height="-1" width="-1" x="592" y="597"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Participant" project="IdrottsTävling" file="/IdrottsTävling/src/Participant.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1035" y="517"/>    
+    <position height="-1" width="-1" x="1023" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Result" project="IdrottsTävling" file="/IdrottsTävling/src/Result.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1384" y="614"/>    
+    <position height="-1" width="-1" x="1451" y="612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Event" project="IdrottsTävling" file="/IdrottsTävling/src/Event.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1455" y="195"/>    
+    <position height="-1" width="-1" x="1454" y="64"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Medal" project="IdrottsTävling" file="/IdrottsTävling/src/Medal.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1383" y="886"/>    
+    <position height="-1" width="-1" x="1446" y="882"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -97,31 +97,30 @@
   <association id="15">    
     <end type="SOURCE" refId="8" navigable="false">      
       <attribute id="16" name="events">        
-        <position height="0" width="0" x="-232" y="-307"/>      
+        <position height="0" width="0" x="-233" y="-438"/>      
       </attribute>      
       <multiplicity id="17" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-232" y="-307"/>      
+        <position height="0" width="0" x="-233" y="-438"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="18">    
-    <bendpoint x="1316" y="441"/>    
     <end type="SOURCE" refId="3" navigable="true">      
       <attribute id="19" name="results">        
-        <position height="19" width="44" x="1286" y="481"/>      
+        <position height="19" width="44" x="1303" y="585"/>      
       </attribute>      
       <multiplicity id="20" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="160" y="49"/>      
+        <position height="0" width="0" x="227" y="47"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
       <attribute id="21" name="achievee">        
-        <position height="19" width="58" x="1206" y="471"/>      
+        <position height="19" width="58" x="1198" y="584"/>      
       </attribute>      
       <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-307" y="-419"/>      
+        <position height="17" width="25" x="1199" y="618"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
@@ -129,18 +128,18 @@
   <association id="23">    
     <end type="SOURCE" refId="2" navigable="true">      
       <attribute id="24" name="members">        
-        <position height="0" width="0" x="-307" y="-419"/>      
+        <position height="0" width="0" x="-319" y="-330"/>      
       </attribute>      
       <multiplicity id="25" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-307" y="-419"/>      
+        <position height="0" width="0" x="-319" y="-330"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true">      
       <attribute id="26" name="myTeam">        
-        <position height="0" width="0" x="-877" y="464"/>      
+        <position height="0" width="0" x="-875" y="490"/>      
       </attribute>      
       <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-877" y="464"/>      
+        <position height="0" width="0" x="-875" y="490"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
@@ -160,10 +159,10 @@
   <association id="31">    
     <end type="SOURCE" refId="8" navigable="false">      
       <attribute id="32" name="teams">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="2" y="26"/>      
       </attribute>      
       <multiplicity id="33" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="2" y="26"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -172,18 +171,18 @@
   <association id="34">    
     <end type="SOURCE" refId="5" navigable="true">      
       <attribute id="35" name="results">        
-        <position height="19" width="44" x="1418" y="478"/>      
+        <position height="19" width="44" x="1485" y="476"/>      
       </attribute>      
       <multiplicity id="36" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="1271" y="619"/>      
+        <position height="17" width="23" x="1455" y="477"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
       <attribute id="37" name="achievedIn">        
-        <position height="19" width="68" x="1437" y="339"/>      
+        <position height="19" width="68" x="1455" y="209"/>      
       </attribute>      
       <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="17" width="25" x="1393" y="342"/>      
+        <position height="17" width="25" x="1392" y="211"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
