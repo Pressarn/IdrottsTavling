@@ -80,18 +80,32 @@ public class InputHandler {
 		
 	}
 	
-	//Frågan är om det där variabelnamnet verkligen är så bra...
+	/*
+	 * Frågan är om det där variabelnamnet verkligen är så bra...
+	 * Samt, ska inte try-statementet bara omfatta substring-raden? Det är ju den som throwar
+	 * exception om man inte skriver in någonting.
+	 * 
+	 */
 	public String normalizeString(String stringToBeNormalized) {
 		
-		stringToBeNormalized = stringToBeNormalized.trim();
-		stringToBeNormalized = stringToBeNormalized.toLowerCase();
+		try {
+			
+			stringToBeNormalized = stringToBeNormalized.trim();
+			stringToBeNormalized = stringToBeNormalized.toLowerCase();
+			
+			String upperCaseFirstLetter = stringToBeNormalized.substring(0, 1).toUpperCase();
+			String stringToBeNormalizedWithoutFirstLetter = stringToBeNormalized.substring(1);
+			
+			String normalizedString = upperCaseFirstLetter + stringToBeNormalizedWithoutFirstLetter;
+			
+			return normalizedString;
+			
+		} catch(IndexOutOfBoundsException e) {
+			
+			return null;
+			
+		}
 		
-		String upperCaseFirstLetter = stringToBeNormalized.substring(0, 1).toUpperCase();
-		String stringToBeNormalizedWithoutFirstLetter = stringToBeNormalized.substring(1);
-		
-		String normalizedString = upperCaseFirstLetter + stringToBeNormalizedWithoutFirstLetter;
-		
-		return normalizedString;
 	}
 	
 	public boolean readBiggerBetter() {

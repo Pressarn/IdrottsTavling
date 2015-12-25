@@ -51,5 +51,34 @@ long jump
 7,0
 message Assigning medals
 teams
+message Adding event Marathon
+add event
+marathon
+1
+n
+message Adding result for Obama in Marathon
+add result
+103
+marathon
+4,56
+message Assigning medals
+teams
+message Adding result for Jöns in Marathon
+add result
+102
+marathon
+4,57
+message Adding result for Arthur Dent in Marathon
+add result
+101
+marathon
+4,58
+message Adding result for Ada in Marathon
+add result
+100
+marathon
+4,59
+message Assigning medals
+teams
 exit
 exit

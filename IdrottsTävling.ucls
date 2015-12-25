@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Event" project="IdrottsTävling" file="/IdrottsTävling/src/Event.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1454" y="64"/>    
+    <position height="-1" width="-1" x="1454" y="71"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -80,10 +80,10 @@
   <association id="11">    
     <end type="SOURCE" refId="7" navigable="false">      
       <attribute id="12" name="events">        
-        <position height="0" width="0" x="-233" y="-438"/>      
+        <position height="0" width="0" x="-233" y="-431"/>      
       </attribute>      
       <multiplicity id="13" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-233" y="-438"/>      
+        <position height="0" width="0" x="-233" y="-431"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
@@ -162,10 +162,10 @@
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
       <attribute id="33" name="achievedIn">        
-        <position height="19" width="68" x="1455" y="209"/>      
+        <position height="19" width="68" x="1455" y="216"/>      
       </attribute>      
       <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="17" width="25" x="1420" y="211"/>      
+        <position height="17" width="25" x="1420" y="218"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  

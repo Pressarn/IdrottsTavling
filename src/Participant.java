@@ -111,20 +111,20 @@ public class Participant {
 		
 		medals.put("Gold medals", 0);
 		medals.put("Silver medals", 0);
-		medals.put("Silver medals", 0);
+		medals.put("Bronze medals", 0);
 		
 		for(Result result : results) {
 			
 			switch(result.getMedal()) {
 			
 				case GOLD:
-					medals.put("Gold medals", 1);
+					medals.put("Gold medals", medals.get("Gold medals") + 1);
 					break;
 				case SILVER:
-					medals.put("Silver medals", 1);
+					medals.put("Silver medals", medals.get("Silver medals") + 1);
 					break;
 				case BRONZE:
-					medals.put("Bronze medals", 1);
+					medals.put("Bronze medals", medals.get("Bronze medals") + 1);
 					break;
 			
 			}
