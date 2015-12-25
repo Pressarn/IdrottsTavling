@@ -114,6 +114,7 @@ public class UI {
 			System.out.println("Invalid result. Please enter a value greater than or equal to 0.");
 			theActualResult = inputHandler.readDouble("Result: ");
 		}
+
 		
 		if(idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
 			

@@ -9,19 +9,11 @@ public class Event {
 
 	private ArrayList<Result> results = new ArrayList<>();
 	
-	private Medal goldMedal;
-	private Medal silverMedal;
-	private Medal bronzeMedal;
-	
 	public Event(String name, int attemptsAllowed, boolean biggerBetter) {
 		
 		this.name = name;
 		this.attemptsAllowed = attemptsAllowed;
 		this.biggerBetter = biggerBetter;
-		
-		goldMedal = new Medal("Gold", null, this);
-		silverMedal = new Medal("Silver", null, this);
-		bronzeMedal = new Medal("Bronze", null, this);
 		
 	}
 	
@@ -75,64 +67,28 @@ public class Event {
 		
 		Collections.sort(results);
 		
+		for(Result result : results) {
+			
+			result.setMedal(null);
+			
+		}
+		
 		if(results.size() > 0) {
-			Participant goldMedalWinner = results.get(0).getAchievee();
-			Team goldMedalWinnersTeam = goldMedalWinner.getTeam();
-				
-				if(goldMedal.getOwner() == null) {
-					
-					goldMedalWinnersTeam.assignGoldMedal(goldMedal);
-					
-				} else {
-					
-					System.out.println("Trying to remove medal from " + goldMedal.getOwner());
-					goldMedal.getOwner().removeGoldMedal(goldMedal);
-					goldMedalWinnersTeam.assignGoldMedal(goldMedal);
-					goldMedal.setOwner(goldMedalWinnersTeam);
-					
-				}
-				
-				System.out.println("Assigning gold medal to " + goldMedalWinnersTeam.getName());
+			
+			results.get(0).setMedal(new Medal("Gold"));
+			
 		}
 		
 		if(results.size() > 1) {
-			Participant silverMedalWinner = results.get(1).getAchievee();
-			Team silverMedalWinnersTeam = silverMedalWinner.getTeam();
 			
-			if(silverMedal.getOwner() == null) {
-				
-				silverMedalWinnersTeam.assignSilverMedal(silverMedal);
-				
-			} else {
-				
-				System.out.println("Trying to remove medal from " + silverMedal.getOwner());
-				silverMedal.getOwner().removeSilverMedal(silverMedal);
-				silverMedalWinnersTeam.assignSilverMedal(silverMedal);
-				silverMedal.setOwner(silverMedalWinnersTeam);
-				
-			}
+			results.get(1).setMedal(new Medal("Silver"));
 			
-			System.out.println("Assigning silver medal to " + silverMedalWinnersTeam.getName());
 		}
 		
 		if(results.size() > 2) {
-			Participant bronzeMedalWinner = results.get(2).getAchievee();
-			Team bronzeMedalWinnersTeam = bronzeMedalWinner.getTeam();
 			
-			if(bronzeMedal.getOwner() == null) {
-				
-				bronzeMedalWinnersTeam.assignBronzeMedal(bronzeMedal);
-				
-			} else {
-				
-				System.out.println("Trying to remove medal from " + bronzeMedal.getOwner());
-				bronzeMedal.getOwner().removeBronzeMedal(bronzeMedal);
-				bronzeMedalWinnersTeam.assignBronzeMedal(bronzeMedal);
-				bronzeMedal.setOwner(bronzeMedalWinnersTeam);
-				
-			}
+			results.get(2).setMedal(new Medal("Bronze"));
 			
-			System.out.println("Assigning bronze medal to " + bronzeMedalWinnersTeam.getName());
 		}
 		
 	}

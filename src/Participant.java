@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Participant {
 
@@ -10,6 +11,7 @@ public class Participant {
 
 	private Team myTeam;
 	private ArrayList<Result> results = new ArrayList<>();
+	private HashMap<String, Integer> medals = new HashMap<>();
 	
 	public Participant(String firstName, String lastName, Team team, int startNumber) {
 		
@@ -18,7 +20,9 @@ public class Participant {
 		myTeam = team;
 		this.startNumber = startNumber;
 		
-		team.addMember(this);
+		medals.put("Gold medals", 0);
+		medals.put("Silver medals", 0);
+		medals.put("Bronze medals", 0);
 		
 	}
 	
@@ -51,7 +55,7 @@ public class Participant {
 	
 	public void addResult(Result result) {
 			
-			results.add(result);
+		results.add(result);
 		
 	}
 	
@@ -99,6 +103,34 @@ public class Participant {
 		});
 		
 		return results;
+		
+	}
+	
+	//Refaktorera
+	public HashMap<String, Integer> getNumberOfMedals() {
+		
+		medals.put("Gold medals", 0);
+		medals.put("Silver medals", 0);
+		medals.put("Silver medals", 0);
+		
+		for(Result result : results) {
+			
+			switch(result.getMedal().getType()) {
+			
+				case "Gold":
+					medals.put("Gold medals", 1);
+					break;
+				case "Silver":
+					medals.put("Silver medals", 1);
+					break;
+				case "Bronze":
+					medals.put("Bronze medals", 1);
+					break;
+			
+			}
+			
+		}
+		return medals;
 		
 	}
 	

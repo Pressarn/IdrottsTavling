@@ -171,6 +171,12 @@ public class IdrottsTävling {
 			
 		}
 		
+		for(Team team : teams) {
+			
+			team.calculateMedals();
+			
+		}
+		
 		Collections.sort(teams);
 		
 		return teams;

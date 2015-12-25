@@ -4,6 +4,7 @@ public class Result implements Comparable<Result>{
 
 	private Participant achievee;
 	private Event achievedIn;
+	private Medal medal;
 
 	public Result(double result, Participant achievee, Event achievedIn) {
 		
@@ -11,7 +12,6 @@ public class Result implements Comparable<Result>{
 		this.achievee = achievee;
 		this.achievedIn = achievedIn;
 		
-		achievee.addResult(this);
 		achievedIn.addResult(this);
 		
 	}
@@ -31,6 +31,18 @@ public class Result implements Comparable<Result>{
 	public double getResult() {
 		
 		return result;
+		
+	}
+	
+	public void setMedal(Medal medal) {
+		
+		this.medal = medal;
+		
+	}
+	
+	public Medal getMedal() {
+		
+		return medal;
 		
 	}
 	
