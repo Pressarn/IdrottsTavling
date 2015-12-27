@@ -154,7 +154,7 @@ public class UI {
 	private void listResultsByEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
-		ArrayList<Result> eventsResults = idrottsTävling.listResultsByEvent(eventName);
+		ArrayList<Result> eventsResults = idrottsTävling.getResultsByEvent(eventName);
 		
 		System.out.println(eventName + ":");
 		
@@ -169,11 +169,19 @@ public class UI {
 	
 	private void listResultsByTeam() {
 		
-		ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
-		
-		for(Team team : teams) {
+		try {
 			
-			System.out.println(team.getMedals());
+			ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
+			
+			for(Team team : teams) {
+				
+				System.out.println(team.getMedals());
+				
+			}
+			
+		} catch(IndexOutOfBoundsException e) {
+			
+			System.out.println("There are no teams with registered results.");
 			
 		}
 		

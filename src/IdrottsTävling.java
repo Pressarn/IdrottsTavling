@@ -156,7 +156,7 @@ public class IdrottsTävling {
 		
 	}
 	
-	public ArrayList<Result> listResultsByEvent(String eventName) {
+	public ArrayList<Result> getResultsByEvent(String eventName) {
 		
 		Event event = getEvent(eventName);
 		return event.getSortedResults();

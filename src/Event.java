@@ -60,7 +60,10 @@ public class Event {
 		
 		/*
 		 * 
-		 * Den här funktionen tar ännu inte hänsyn till likaplaceringar.
+		 * Anledningen till att jag använder objekt som benchmarks och inte doublevärden
+		 * är att det är möjligt att registrera ett resultat som är 0.0. Därför kan jag inte
+		 * använda if(benchmark == 0.0) { benchmark = theActualResult } som check för att sätta
+		 * ett nytt benchmark.
 		 * 
 		 * 
 		 */
@@ -71,23 +74,48 @@ public class Event {
 		
 		Collections.sort(results);
 		
+		Result goldBenchmark = results.get(0);
+		Result silverBenchmark = null;
+		Result bronzeBenchmark = null;
+		
 		for(Result result : results) {
 			
 			result.setMedal(null);
 			
 			double theActualResult = result.getResult();
 			
-			if(theActualResult == results.get(0).getResult()) {
+			if(theActualResult == goldBenchmark.getResult()) {
 				
 				goldMedalResults.add(result);
 				
-			} else if(theActualResult == results.get(1).getResult()) {
 				
-				silverMedalResults.add(result);
+			} else {
 				
-			} else if(theActualResult == results.get(2).getResult()) {
-				
-				bronzeMedalResults.add(result);
+				if(silverBenchmark == null) {
+					
+					silverBenchmark = result;
+					
+				}
+					
+				if(theActualResult == silverBenchmark.getResult()) {
+					
+					silverMedalResults.add(result);
+					
+				} else {
+					
+					if(bronzeBenchmark == null) {
+						
+						bronzeBenchmark = result;
+						
+					}
+					
+					if(theActualResult == bronzeBenchmark.getResult()) {
+						
+						bronzeMedalResults.add(result);
+						
+					}
+					
+				}
 				
 			}
 			
@@ -110,24 +138,6 @@ public class Event {
 			bronzeMedalResult.setMedal(Medal.BRONZE);
 	
 		}
-		
-		/*if(results.size() > 0) {
-			
-			results.get(0).setMedal(Medal.GOLD);
-			
-		}
-		
-		if(results.size() > 1) {
-			
-			results.get(1).setMedal(Medal.SILVER);
-			
-		}
-		
-		if(results.size() > 2) {
-			
-			results.get(2).setMedal(Medal.BRONZE);
-			
-		}*/
 		
 	}
 	
