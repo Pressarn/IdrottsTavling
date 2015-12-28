@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Result implements Comparable<Result>{
 
 	private double result;
@@ -48,7 +50,9 @@ public class Result implements Comparable<Result>{
 	
 	public String toString() {
 		
-		return String.format("Event:\n%s\nResult: %f", achievedIn, result);
+		//DecimalFormat df = new DecimalFormat("0.0");
+		
+		return String.format("Event:\n%s\nResult: %s", achievedIn.getName(), result);
 		
 	}
 	

@@ -68,10 +68,6 @@ public class Event {
 		 * 
 		 */
 		
-		ArrayList<Result> goldMedalResults = new ArrayList<>();
-		ArrayList<Result> silverMedalResults = new ArrayList<>();
-		ArrayList<Result> bronzeMedalResults = new ArrayList<>();
-		
 		Collections.sort(results);
 		
 		Result goldBenchmark = results.get(0);
@@ -86,7 +82,7 @@ public class Event {
 			
 			if(theActualResult == goldBenchmark.getResult()) {
 				
-				goldMedalResults.add(result);
+				result.setMedal(Medal.GOLD);
 				
 				
 			} else {
@@ -99,7 +95,7 @@ public class Event {
 					
 				if(theActualResult == silverBenchmark.getResult()) {
 					
-					silverMedalResults.add(result);
+					result.setMedal(Medal.SILVER);
 					
 				} else {
 					
@@ -111,7 +107,7 @@ public class Event {
 					
 					if(theActualResult == bronzeBenchmark.getResult()) {
 						
-						bronzeMedalResults.add(result);
+						result.setMedal(Medal.BRONZE);
 						
 					}
 					
@@ -119,24 +115,6 @@ public class Event {
 				
 			}
 			
-		}
-		
-		for(Result goldMedalResult : goldMedalResults) {
-		
-			goldMedalResult.setMedal(Medal.GOLD);
-			
-		}
-		
-		for(Result silverMedalResult : silverMedalResults) {
-			
-			silverMedalResult.setMedal(Medal.SILVER);
-			
-		}
-
-		for(Result bronzeMedalResult : bronzeMedalResults) {
-	
-			bronzeMedalResult.setMedal(Medal.BRONZE);
-	
 		}
 		
 	}

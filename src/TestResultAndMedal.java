@@ -1,34 +1,15 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class TestMedal {
+public class TestResultAndMedal {
 
 	private IdrottsTävling idrottsTävling = new IdrottsTävling();
-
-	@Test
-	public void testAddingParticipantAndTeam() {
-		
-		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
-
-		assertEquals("Ada Lovelace", idrottsTävling.getParticipant(100).getFullName());
-		assertEquals("Computing", idrottsTävling.getTeam("Computing").getName());
-
-	}
-
-	@Test
-	public void testAddingEvent() {
-		
-		idrottsTävling.addEvent("Long Jump", 3, true);
-
-		assertEquals("Long Jump", idrottsTävling.getEvent("Long Jump").getName());
-
-	}
 	
 	@Test
 	public void testAddingOneMedal() {
 		
-		testAddingParticipantAndTeam();
-		testAddingEvent();
+		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
+		idrottsTävling.addEvent("Long Jump", 3, true);
 		
 		idrottsTävling.addResult(100, "Long Jump", 6.7);
 		
@@ -214,6 +195,35 @@ public class TestMedal {
 				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
 		assertEquals("Presidents\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+		
+	}
+	
+	@Test
+	public void testListingResultsForOneParticipant() {
+		
+		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
+		
+		idrottsTävling.addEvent("Long Jump", 3, true);
+		idrottsTävling.addEvent("Marathon", 1, false);
+		idrottsTävling.addEvent("Javelin", 3, true);
+		idrottsTävling.addEvent("100 meters", 1, false);
+		
+		idrottsTävling.addResult(100, "Long Jump", 6.7);
+		idrottsTävling.addResult(100, "Marathon", 2.46);
+		idrottsTävling.addResult(100, "Javelin", 40.5);
+		idrottsTävling.addResult(100, "100 meters", 15.0);
+		
+		assertEquals("Event:\n100 meters\nResult: 15.0",
+				idrottsTävling.getResultsByParticipant(100).get(0).toString());
+		
+		assertEquals("Event:\nJavelin\nResult: 40.5", 
+				idrottsTävling.getResultsByParticipant(100).get(1).toString());
+		
+		assertEquals("Event:\nLong Jump\nResult: 6.7", 
+					idrottsTävling.getResultsByParticipant(100).get(2).toString());
+		
+		assertEquals("Event:\nMarathon\nResult: 2.46", 
+				idrottsTävling.getResultsByParticipant(100).get(3).toString());
 		
 	}
 

@@ -35,17 +35,20 @@ public class UI {
 
 	private void addEvent() {
 		
-		String eventName = inputHandler.readEventName();		
-		int attemptsAllowed = inputHandler.readAttemptsAllowed();
-		boolean biggerBetter = inputHandler.readBiggerBetter();
+		String eventName = inputHandler.readEventName();
 		
-		if(idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter)) {
+		if(idrottsTävling.getEvent(eventName) == null) {
 			
+			int attemptsAllowed = inputHandler.readAttemptsAllowed();
+			boolean biggerBetter = inputHandler.readBiggerBetter();
+
+			idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter);
+
 			System.out.println(eventName + " added");
 			
 		} else {
 			
-			System.out.println("An event with that name already exists.");
+			System.out.println(eventName + " has already been added");
 			
 		}
 		
@@ -71,9 +74,15 @@ public class UI {
 		String lastName = inputHandler.readName("Last Name: ");
 		String teamName = inputHandler.readName("Team name: ");
 		
+		int startNumber = idrottsTävling.getParticipantCounter();
+		
 		idrottsTävling.addParticipant(firstName, lastName, teamName);
 		
-		System.out.println("Participant added");
+		System.out.printf("%s %s from %s with number %d added\n",
+							firstName,
+							lastName,
+							teamName,
+							startNumber);
 		
 	}
 	
@@ -88,7 +97,6 @@ public class UI {
 		} catch(NullPointerException e) {
 			
 			System.out.println("Couldn't find a participant with that startnumber");
-			return;
 			
 		}
 		
@@ -133,19 +141,26 @@ public class UI {
 		
 		int startNumber = inputHandler.readStartNumber();
 		
-		ArrayList<Result> participantsResults = idrottsTävling.getResultsByParticipant(startNumber);
-		
-		if(participantsResults.size() == 0) {
+		try {
+			ArrayList<Result> participantsResults = idrottsTävling.getResultsByParticipant(startNumber);
 			
-			System.out.println("That participant has no results");
+			if(participantsResults.size() == 0) {
+				
+				System.out.println("That participant has no results");
+				
+			} else {
 			
-		} else {
-		
-			for(Result result : participantsResults) {
-			
-				System.out.println(result);
+				for(Result result : participantsResults) {
+				
+					System.out.println(result);
+					
+				}
 				
 			}
+			
+		} catch(NullPointerException e) {
+			
+			System.out.println("There are no registered participants.");;
 			
 		}
 		
@@ -167,15 +182,24 @@ public class UI {
 		
 	}
 	
+	//Refaktorera
 	private void listResultsByTeam() {
 		
 		try {
 			
 			ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
 			
-			for(Team team : teams) {
+			if(teams.size() == 0) {
 				
-				System.out.println(team.getMedals());
+				System.out.println("There are no registered teams.");
+				
+			} else {
+			
+				for(Team team : teams) {
+
+					System.out.println(team.getMedals());
+
+				}
 				
 			}
 			
@@ -247,6 +271,18 @@ public class UI {
 		}
 		
 	}
+	
+	private void listTeams() {
+		
+		ArrayList<Team> teams = idrottsTävling.getTeams();
+		
+		for(Team team : teams) {
+			
+			System.out.println(team);
+			
+		}
+		
+	}
 
 	private void listMembersOfTeam() {
 		
@@ -296,6 +332,9 @@ public class UI {
 			case "teams":
 				listResultsByTeam();
 				break;
+			case "reinitialize":
+				idrottsTävling.reinitialize();
+				break;
 			case "print menu":
 				printMenu();
 				break;
@@ -303,7 +342,7 @@ public class UI {
 				listEvents();
 				break;
 			case "list teams":
-				idrottsTävling.listTeams();
+				listTeams();
 				break;
 			case "list members of team":
 				listMembersOfTeam();

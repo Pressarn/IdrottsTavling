@@ -35,6 +35,12 @@ public class Team implements Comparable<Team> {
 	  
   }
   
+  public void removeAllMembers() {
+	  
+	  members.removeAll(members);
+	  
+  }
+  
   public ArrayList<Participant> getMembers() {
 	  
 	  return members;

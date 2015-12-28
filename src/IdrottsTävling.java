@@ -5,32 +5,21 @@ public class IdrottsTävling {
 
 	private ArrayList<Event> events = new ArrayList<>();
 	private ArrayList<Team> teams = new ArrayList<>();
-	//private ArrayList<Participant> participants = new ArrayList<>();
-	//private ArrayList<Result> results = new ArrayList<>();
 	
 	private int participantCounter = 100;	
 	
-	public boolean addEvent(String eventName, int attemptsAllowed, boolean biggerBetter) {
-			
-		if(getEvent(eventName) == null) {
-			
-			events.add(new Event(eventName, attemptsAllowed, biggerBetter));
-			return true;
-			
-		} else {
-			
-			return false;
-			
-		}
+	public int getParticipantCounter() {
+		
+		return participantCounter;
 		
 	}
 	
-	/*
-	 * Fundera över om normalizeEvent verkligen ska ligga här, den gör att allt som kommer 
-	 * hit matchar det som finns lagrat vilket iofs är bra, men då kanske ett anrop till normalizeEvent
-	 * inte behövs i readEventName()?
-	 * 
-	 */
+	public void addEvent(String eventName, int attemptsAllowed, boolean biggerBetter) {
+			
+		events.add(new Event(eventName, attemptsAllowed, biggerBetter));
+		
+	}
+	
 	public Event getEvent(String eventName) {
 		
 		for(Event event : events) {
@@ -189,13 +178,9 @@ public class IdrottsTävling {
 		
 	}
 	
-	public void listTeams() {
+	public ArrayList<Team> getTeams() {
 		
-		for(int i = 0; i < teams.size(); i++) {
-			
-			System.out.println(teams.get(i));
-			
-		}
+		return teams;
 		
 	}
 	
@@ -204,6 +189,14 @@ public class IdrottsTävling {
 		Team team = getTeam(teamName);
 
 		return team.getMembers();
+		
+	}
+	
+	public void reinitialize() {
+		
+		teams.clear();
+		events.clear();
+		participantCounter = 100;
 		
 	}
 	
