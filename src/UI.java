@@ -16,6 +16,7 @@ public class UI {
 							 "participant",
 							 "teams",
 							 "TEAMNAME",
+							 "reinitialize",
 							 "message MESSAGE",
 							 "print menu"};
 		
@@ -237,15 +238,19 @@ public class UI {
 		
 		for(int i = 0; i < message.length(); i++) {
 			
-			int charactersLeftUntilEndOfBox = (MESSAGE_BOX_WIDTH - i) - 4;
+			boolean messageSpansSeveralLines = message.length() > 55 ? true : false;
+			
+			boolean indexIsEvenlyDivisibleBy56 = i % 56 == 0 ? true : false;
+			boolean indexIsAtEndOfLine = (indexIsEvenlyDivisibleBy56 && (i < message.length())) ? true : false;
+			
+			int numberOfConstantWhiteSpacesAndStars = 4;
+			int charactersLeftUntilEndOfBox = (MESSAGE_BOX_WIDTH - i) - numberOfConstantWhiteSpacesAndStars;
 			
 			if(i == 0) {
 				
 				System.out.print("* ");
 				
-			}
-			
-			if((i % 56 == 0) && (i != 0) && (i < message.length())) {
+			} else if(indexIsAtEndOfLine) {
 			
 				for(int n = 0; n < charactersLeftUntilEndOfBox; n++) {
 					
@@ -253,14 +258,13 @@ public class UI {
 					
 				}
 				System.out.print(" *\n* ");
-				
 			}
 			
 			System.out.print(message.substring(i, i + 1));
 			
 			if(i == message.length() - 1) {
 				
-				if(message.length() > 55) {
+				if(messageSpansSeveralLines) {
 				
 					for(int n = 0; n < charactersLeftUntilEndOfBox + 56; n++) {
 					
@@ -288,57 +292,7 @@ public class UI {
 		printRowOfStars();
 		
 	}
-	
-//	private void printMessage(String message) {
-//		
-//		double numberOfRows = 3;
-//		
-//		message = message.replaceFirst("message", "");
-//		message = message.trim();
-//		message = message.toUpperCase();
-//		
-//		if(message.length() > 56) {
-//				
-//			message = message.substring(0, 55) + "\n" + message.substring(message.length() - (message.length() - 54), message.length() - 1);
-//			numberOfRows++;
-//			
-//		}
-//		
-//		int rowForDisplayingMessage = (int) Math.ceil(numberOfRows / 2);
-//		
-//		System.out.println(rowForDisplayingMessage);
-//		
-//		for(int row = 1; row <= numberOfRows; row++) {
-//			
-//			for(int column = 1; column <= MESSAGE_BOX_WIDTH; column++) {
-//				
-//				if(column == 1 || column == MESSAGE_BOX_WIDTH) {
-//					
-//					System.out.print(" ");
-//					
-//				} else if((row != rowForDisplayingMessage)) {
-//					
-//					System.out.print("*");
-//					
-//				} else if(row == rowForDisplayingMessage) {
-//					
-//					System.out.print(message);
-//					break;
-//					
-//				}
-//				else {
-//					
-//					System.out.print(" ");
-//					
-//				}
-//					
-//				
-//			}
-//			System.out.println();
-//			
-//		}
-//		
-//	}
+
 	
 	private void listEvents() {
 		
