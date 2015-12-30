@@ -111,13 +111,6 @@ public class IdrottsTävling {
 		
 	}
 	
-	/*
-	 * Fundera �ver den h�r. �ndrade ju fr�n att lagra hos b�de participant och event till att bara skapa ett resultat och
-	 * sk�ta associationerna i konstruktorn.
-	 * Dock t�nkte jag ju inte �ver att jag bara instantierade ett nytt resultat utan att lagra det n�gonstans.
-	 * Fixade det genom att introducera en resultatarraylist i programmet, men var det verkligen bra? �r det inte b�ttre att
-	 * bara spara resultatet hos participant och event?
-	 */
 	//Refaktorera, beh�ver resultat l�ggas till p� tv� st�llen? Samt Result och theActualResult? Fult. Fundera ocks� �ver om inte if/else ska komma i omv�nd ordning.
 	public boolean addResult(int startNumber, String eventName, double result) {
 		

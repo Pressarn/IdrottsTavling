@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class Participant {
@@ -17,8 +16,8 @@ public class Participant {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
-		myTeam = team;
 		this.startNumber = startNumber;
+		myTeam = team;
 		
 		medals.put("Gold medals", 0);
 		medals.put("Silver medals", 0);
@@ -65,14 +64,13 @@ public class Participant {
 		
 	}
 	
-	//Refaktorera
 	public boolean hasReachedMaximumNumberOfAttempts(Event event) {
 		
 		int numberOfResultsForEvent = 0;
 		
 		for(Result result : results) {
 			
-			if(result.getAchievedIn().getName().equals(event.getName())) {
+			if(result.getNameOfEventAchievedIn().equals(event.getName())) {
 				
 				numberOfResultsForEvent++;
 				
@@ -80,33 +78,16 @@ public class Participant {
 			
 		}
 		
-		if(numberOfResultsForEvent >= event.getAttemptsAllowed()) {
-			
-			return true;
-			
-		} else {
-		
-			return false;
-			
-		}
+		return numberOfResultsForEvent >= event.getAttemptsAllowed() ? true : false;
 	}
 	
-	//Refaktorera, kolla in om lambda-uttryck kan vara en bättre lösning än att skicka in Comparator här
 	public ArrayList<Result> getResultsSortedByName() {
 		
 		//Överlagrar den vanliga sorteringsordningen hos Result.
-		Collections.sort(results, new Comparator<Result>() {
-			
-			public int compare(Result result1, Result result2) {
-				
-				String result1EventName = result1.getAchievedIn().getName();
-				String result2EventName = result2.getAchievedIn().getName();
-				
-				return result1EventName.compareTo(result2EventName);
-				
-			}
-			
-		});
+		Collections.sort(
+				results, 
+				(Result result1, Result result2) -> result1.getNameOfEventAchievedIn().compareTo(result2.getNameOfEventAchievedIn())
+		);
 		
 		return results;
 		

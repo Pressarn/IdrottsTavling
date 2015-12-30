@@ -1,4 +1,3 @@
-import java.text.DecimalFormat;
 
 public class Result implements Comparable<Result>{
 
@@ -24,6 +23,12 @@ public class Result implements Comparable<Result>{
 		
 	}
 	
+	public String getNameOfEventAchievedIn() {
+		
+		return achievedIn.getName();
+		
+	}
+	
 	public Participant getAchievee() {
 		
 		return achievee;
@@ -39,7 +44,6 @@ public class Result implements Comparable<Result>{
 	public void setMedal(Medal medal) {
 		
 		this.medal = medal;
-		//System.out.println(result + " resulted in " + this.medal + " in " + achievedIn + "\n" + achievee.getName());
 	}
 	
 	public Medal getMedal() {
@@ -49,8 +53,6 @@ public class Result implements Comparable<Result>{
 	}
 	
 	public String toString() {
-		
-		//DecimalFormat df = new DecimalFormat("0.0");
 		
 		return String.format("Event:\n%s\nResult: %s", achievedIn.getName(), result);
 		

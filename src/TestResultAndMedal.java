@@ -226,5 +226,29 @@ public class TestResultAndMedal {
 				idrottsTävling.getResultsByParticipant(100).get(3).toString());
 		
 	}
+	
+	@Test
+	public void testMaximumNumberOfAttempts() {
+		
+		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
+		idrottsTävling.addEvent("Long Jump", 3, true);
+		
+		idrottsTävling.addResult(100, "Long Jump", 6.7);
+		idrottsTävling.addResult(100, "Long Jump", 6.8);
+		
+		Participant adaLovelace = idrottsTävling.getParticipant(100);
+		Event longJump = idrottsTävling.getEvent("Long Jump");
+		
+		assertEquals(false, adaLovelace.hasReachedMaximumNumberOfAttempts(longJump));
+		
+		idrottsTävling.addResult(100, "Long Jump", 6.9);
+		
+		assertEquals(true, adaLovelace.hasReachedMaximumNumberOfAttempts(longJump));
+		
+		idrottsTävling.addResult(100,  "Long Jump", 7.0);
+		
+		assertEquals(3, longJump.getSortedResults().size());
+		assertEquals(6.9, longJump.getSortedResults().get(0).getResult(), 0);
+	}
 
 }
