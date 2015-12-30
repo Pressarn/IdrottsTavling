@@ -53,6 +53,12 @@ public class Participant {
 		
 	}
 	
+	public String getTeamName() {
+		
+		return myTeam.getName();
+		
+	}
+	
 	public void addResult(Result result) {
 			
 		results.add(result);

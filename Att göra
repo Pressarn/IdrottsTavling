@@ -24,6 +24,7 @@
 * Skriv en input handlerklass men input- och normalize/formatteringsmetoder.
 * Läs på om interface, finns i boken
 * Se till att felhantering är enhetlig, antingen try/catch eller if-satser, inte båda.
+* Participant har en getTeamName-metod nu, se till att använda den på alla ställen det blir snyggare.
 Att dela ut medaljer:
  * En medalj är associerad med ett Team.
  * En medalj är associerad med ett Event.

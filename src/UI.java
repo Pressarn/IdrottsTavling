@@ -27,11 +27,6 @@ public class UI {
 		}
 		
 	}
-	
-	/*
-	 * Refaktorera, man ska inte behöva skriva in alla värden innan man får reda på om eventet redan finns.
-	 * 
-	 */
 
 	private void addEvent() {
 		
@@ -92,7 +87,13 @@ public class UI {
 		
 		try {
 			
+			Participant participantToBeRemoved = idrottsTävling.getParticipant(startNumber);
 			idrottsTävling.removeParticipant(startNumber);
+			
+			System.out.printf("%s from %s with number %d removed\n",
+								participantToBeRemoved.getFullName(),
+								participantToBeRemoved.getTeamName(),
+								participantToBeRemoved.getStartNumber());
 			
 		} catch(NullPointerException e) {
 			
@@ -211,54 +212,133 @@ public class UI {
 		
 	}
 	
-	private void printMessage(String message) {
+	private void printRowOfStars() {
 		
-		int numberOfRows = 3;
+		System.out.println();
+		
+		for(int i = 0; i < MESSAGE_BOX_WIDTH; i++) {
+			
+			System.out.print("*");
+			
+		}
+		
+		System.out.println();
+		
+	}
+	
+	//Refaktorera
+	private void printMessage(String message) {
 		
 		message = message.replaceFirst("message", "");
 		message = message.trim();
 		message = message.toUpperCase();
 		
-		if(message.length() > 56) {
-				
-			message = message.substring(0, 55) + "\n" + message.substring(message.length() - (message.length() - 54), message.length() - 1);
-			numberOfRows++;
-			
-		}
+		printRowOfStars();
 		
-		int rowForDisplayingMessage = 2;
-		
-		for(int row = 1; row <= numberOfRows; row++) {
+		for(int i = 0; i < message.length(); i++) {
 			
-			for(int column = 1; column <= MESSAGE_BOX_WIDTH; column++) {
+			int charactersLeftUntilEndOfBox = (MESSAGE_BOX_WIDTH - i) - 4;
+			
+			if(i == 0) {
 				
-				if(column == 1 || column == MESSAGE_BOX_WIDTH) {
+				System.out.print("* ");
+				
+			}
+			
+			if((i % 56 == 0) && (i != 0) && (i < message.length())) {
+			
+				for(int n = 0; n < charactersLeftUntilEndOfBox; n++) {
 					
 					System.out.print(" ");
 					
-				} else if((row != rowForDisplayingMessage)) {
+				}
+				System.out.print(" *\n* ");
+				
+			}
+			
+			System.out.print(message.substring(i, i + 1));
+			
+			if(i == message.length() - 1) {
+				
+				if(message.length() > 55) {
+				
+					for(int n = 0; n < charactersLeftUntilEndOfBox + 56; n++) {
+					
+						System.out.print(" ");
+					
+					}
 					
 					System.out.print("*");
 					
-				} else if(row == rowForDisplayingMessage) {
+				} else {
 					
-					System.out.print(message);
-					break;
+					for(int n = 0; n < charactersLeftUntilEndOfBox; n++) {
+						
+						System.out.print(" ");
+					
+					}
+					
+					System.out.print("*");
 					
 				}
-				else {
-					
-					System.out.print(" ");
-					
-				}
-					
-				
 			}
-			System.out.println();
 			
 		}
 		
+		printRowOfStars();
+		
 	}
+	
+//	private void printMessage(String message) {
+//		
+//		double numberOfRows = 3;
+//		
+//		message = message.replaceFirst("message", "");
+//		message = message.trim();
+//		message = message.toUpperCase();
+//		
+//		if(message.length() > 56) {
+//				
+//			message = message.substring(0, 55) + "\n" + message.substring(message.length() - (message.length() - 54), message.length() - 1);
+//			numberOfRows++;
+//			
+//		}
+//		
+//		int rowForDisplayingMessage = (int) Math.ceil(numberOfRows / 2);
+//		
+//		System.out.println(rowForDisplayingMessage);
+//		
+//		for(int row = 1; row <= numberOfRows; row++) {
+//			
+//			for(int column = 1; column <= MESSAGE_BOX_WIDTH; column++) {
+//				
+//				if(column == 1 || column == MESSAGE_BOX_WIDTH) {
+//					
+//					System.out.print(" ");
+//					
+//				} else if((row != rowForDisplayingMessage)) {
+//					
+//					System.out.print("*");
+//					
+//				} else if(row == rowForDisplayingMessage) {
+//					
+//					System.out.print(message);
+//					break;
+//					
+//				}
+//				else {
+//					
+//					System.out.print(" ");
+//					
+//				}
+//					
+//				
+//			}
+//			System.out.println();
+//			
+//		}
+//		
+//	}
 	
 	private void listEvents() {
 		
