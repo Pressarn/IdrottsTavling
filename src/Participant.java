@@ -58,9 +58,9 @@ public class Participant {
 		
 	}
 	
-	public void addResult(Result result) {
+	public void addResult(double result, Event eventAchievedIn) {
 			
-		results.add(result);
+		results.add(new Result(result, this, eventAchievedIn));
 		
 	}
 	

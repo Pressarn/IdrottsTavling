@@ -123,7 +123,7 @@ public class IdrottsTävling {
 			
 		} else {
 			
-			achievee.addResult(new Result(result, achievee, eventAchievedIn));
+			achievee.addResult(result, eventAchievedIn);
 			return true;
 			
 		}
