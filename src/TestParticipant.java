@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class TestParticipant {
 	
-	IdrottsTävling idrottsTävling = new IdrottsTävling();
+	IdrottsTavling idrottsTävling = new IdrottsTavling();
 	
 	@Test
 	public void testAddingOneParticipant() {

@@ -3,7 +3,7 @@ import org.junit.Test;
 
 public class TestResultAndMedal {
 
-	private IdrottsTävling idrottsTävling = new IdrottsTävling();
+	private IdrottsTavling idrottsTävling = new IdrottsTavling();
 	
 	@Test
 	public void testAddingOneMedal() {

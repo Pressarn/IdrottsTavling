@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class IdrottsTävling {
+public class IdrottsTavling {
 
 	private ArrayList<Event> events = new ArrayList<>();
 	private ArrayList<Team> teams = new ArrayList<>();

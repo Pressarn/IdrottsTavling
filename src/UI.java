@@ -5,7 +5,7 @@ public class UI {
 	private static final int MESSAGE_BOX_WIDTH = 60;
 	
 	private InputHandler inputHandler = new InputHandler();
-	private IdrottsTävling idrottsTävling = new IdrottsTävling();
+	private IdrottsTavling idrottsTävling = new IdrottsTavling();
 
 	private void printMenu() {
 		
@@ -123,6 +123,7 @@ public class UI {
 			
 			System.out.println("Invalid result. Please enter a value greater than or equal to 0.");
 			theActualResult = inputHandler.readDouble("Result: ");
+			
 		}
 
 		
