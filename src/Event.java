@@ -68,6 +68,12 @@ public class Event {
 		 * 
 		 */
 		
+		if(results.size() == 0) {
+			
+			return;
+			
+		}
+		
 		Collections.sort(results);
 		
 		Result goldBenchmark = results.get(0);
@@ -83,7 +89,6 @@ public class Event {
 			if(theActualResult == goldBenchmark.getResult()) {
 				
 				result.setMedal(Medal.GOLD);
-				
 				
 			} else {
 				

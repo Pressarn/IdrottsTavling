@@ -145,7 +145,7 @@ public class IdrottsTavling {
 		
 	}
 	
-	public ArrayList<Team> getResultsSortedByTeam() {
+	private void assignMedals() {
 		
 		for(Event event: events) {
 			
@@ -153,11 +153,22 @@ public class IdrottsTavling {
 			
 		}
 		
+	}
+	
+	private void countMedals() {
+		
 		for(Team team : teams) {
 			
 			team.calculateMedals();
 			
 		}
+		
+	}
+	
+	public ArrayList<Team> getResultsSortedByTeam() {
+		
+		assignMedals();
+		countMedals();
 		
 		Collections.sort(teams);
 		

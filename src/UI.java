@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UI {
 	
@@ -187,29 +188,30 @@ public class UI {
 	
 	//Refaktorera
 	private void listResultsByTeam() {
-		
-		try {
 			
-			ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
-			
-			if(teams.size() == 0) {
-				
-				System.out.println("There are no registered teams.");
-				
-			} else {
-			
-				for(Team team : teams) {
+		ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
 
-					System.out.println(team.getMedals());
+		if(teams.size() == 0) {
 
-				}
+			System.out.println("There are no registered teams.");
+
+		} else {
+
+			for(Team team : teams) {
+
+				HashMap<String, Integer> medals = team.getMedals();
+				String teamName = team.getName(); 
 				
+				System.out.printf(
+						  "%s\nGold medals: %s, Silver medals: %s, Bronze medals: %s\n",
+						  teamName, 
+						  medals.get("Gold medals"), 
+						  medals.get("Silver medals"), 
+						  medals.get("Bronze medals")
+						  );
+
 			}
-			
-		} catch(IndexOutOfBoundsException e) {
-			
-			System.out.println("There are no teams with registered results.");
-			
+
 		}
 		
 	}

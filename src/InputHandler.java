@@ -71,6 +71,7 @@ public class InputHandler {
 		
 	}
 	
+	//Refaktorera
 	public String readEventName() {
 		
 		String eventName = readName("Event name: ");

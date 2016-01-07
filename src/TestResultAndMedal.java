@@ -17,7 +17,7 @@ public class TestResultAndMedal {
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(0).getResult(), 0);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		
 	}
 	
@@ -36,9 +36,9 @@ public class TestResultAndMedal {
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(1).getResult(), 0);
 		
 		assertEquals("Sf\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		
 	}
 	
@@ -57,11 +57,11 @@ public class TestResultAndMedal {
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(2).getResult(), 0);
 		
 		assertEquals("Historien\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		
 	}
 	
@@ -81,13 +81,13 @@ public class TestResultAndMedal {
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(3).getResult(), 0);
 		
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Historien\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(3).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(3).debugString());
 		
 	}
 	
@@ -114,13 +114,13 @@ public class TestResultAndMedal {
 		assertEquals(4.56, idrottsTävling.getResultsByEvent("Marathon").get(3).getResult(), 0);
 		
 		assertEquals("Presidents\nGold medals: 2, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Historien\nGold medals: 0, Silver medals: 2, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 0, Bronze medals: 2\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(3).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(3).debugString());
 		
 	}
 	
@@ -136,9 +136,9 @@ public class TestResultAndMedal {
 		idrottsTävling.addResult(101, "Long Jump", 7.0);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		
 	}
 	
@@ -152,11 +152,11 @@ public class TestResultAndMedal {
 		idrottsTävling.addResult(102, "Long Jump", 6.9);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		
 	}
 	
@@ -170,13 +170,13 @@ public class TestResultAndMedal {
 		idrottsTävling.addResult(103, "Long Jump", 6.8);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		assertEquals("Historien\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
-				idrottsTävling.getResultsSortedByTeam().get(3).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(3).debugString());
 		
 	}
 	
@@ -190,11 +190,11 @@ public class TestResultAndMedal {
 		idrottsTävling.addResult(102, "Long Jump", 7.1);
 		
 		assertEquals("Sf\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(0).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(1).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
 		assertEquals("Presidents\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
-				idrottsTävling.getResultsSortedByTeam().get(2).getMedals());
+				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		
 	}
 	
@@ -249,6 +249,13 @@ public class TestResultAndMedal {
 		
 		assertEquals(3, longJump.getSortedResults().size());
 		assertEquals(6.9, longJump.getSortedResults().get(0).getResult(), 0);
+	}
+	
+	@Test
+	public void testCalculatingMedalsWithNoRegisteredResults() {
+		
+		
+		
 	}
 
 }
