@@ -118,15 +118,7 @@ public class UI {
 		
 		int achieveeStartNumber = inputHandler.readStartNumber();
 		String eventAchievedIn = inputHandler.readEventName();
-		double theActualResult = inputHandler.readDouble("Result: ");
-		
-		while(theActualResult < 0) {
-			
-			System.out.println("Invalid result. Please enter a value greater than or equal to 0.");
-			theActualResult = inputHandler.readDouble("Result: ");
-			
-		}
-
+		double theActualResult = inputHandler.readResult();
 		
 		if(idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
 			
@@ -199,12 +191,11 @@ public class UI {
 
 			for(Team team : teams) {
 
-				HashMap<String, Integer> medals = team.getMedals();
-				String teamName = team.getName(); 
+				HashMap<String, Integer> medals = team.getMedals(); 
 				
 				System.out.printf(
 						  "%s\nGold medals: %s, Silver medals: %s, Bronze medals: %s\n",
-						  teamName, 
+						  team.getName(), 
 						  medals.get("Gold medals"), 
 						  medals.get("Silver medals"), 
 						  medals.get("Bronze medals")

@@ -4,6 +4,8 @@ public class InputHandler {
 	
 	private Scanner scanner = new Scanner(System.in);
 
+	//Refaktorera, allting bör egentligen normaliseras, typ. Iaf trimmas.
+	
 	public int readInt(String leadText) {
 
 		System.out.print(leadText);
@@ -46,6 +48,22 @@ public class InputHandler {
 		return number;
 
 	}
+	
+	//Refaktorera, bör man inte ha en allmän loopfunktion som kan återanvändas?
+	public double readResult() {
+		
+		double result = readDouble("Result: ");
+		
+		while(result < 0) {
+			
+			System.out.println("Invalid result. Please enter a value greater than or equal to 0.");
+			result = readDouble("Result: ");
+			
+		}
+		
+		return result;
+		
+	}
 
 	public String readString(String leadText) {
 
@@ -75,7 +93,6 @@ public class InputHandler {
 	public String readEventName() {
 		
 		String eventName = readName("Event name: ");
-		eventName = normalizeString(eventName);
 		
 		return eventName;
 		

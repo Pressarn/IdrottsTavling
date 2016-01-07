@@ -10,7 +10,8 @@ public class Participant {
 
 	private Team myTeam;
 	private ArrayList<Result> results = new ArrayList<>();
-	private HashMap<String, Integer> medals = new HashMap<>();
+	//private HashMap<String, Integer> medals = new HashMap<>();
+	private MedalCounter medalCounter = new MedalCounter();
 	
 	public Participant(String firstName, String lastName, Team team, int startNumber) {
 		
@@ -19,9 +20,9 @@ public class Participant {
 		this.startNumber = startNumber;
 		myTeam = team;
 		
-		medals.put("Gold medals", 0);
-		medals.put("Silver medals", 0);
-		medals.put("Bronze medals", 0);
+//		medals.put("Gold medals", 0);
+//		medals.put("Silver medals", 0);
+//		medals.put("Bronze medals", 0);
 		
 	}
 	
@@ -93,53 +94,39 @@ public class Participant {
 		
 	}
 	
-	/* 
-	 * Refaktorera, ta reda på varför switch-statementet inte fungerar, kan det vara något med Integer?
-	 * Man kan testa att inte returnera HashMap utan skriva tre separata metoder.
-	 * Anledningen till att Participant använder en HashMap och att Team använder tre separata
-	 * variabler för medaljerna är att Participant behöver returnera medaljerna till Team, och det blir smidigast
-	 * att göra det med en funktion istället för tre. Team behöver inte returnera värderna utan behöver endast kunna
-	 * sorteras enligt dem, varför det är lättare att använda tre olika variabler för medaljerna där.
-	 */
+
+//	public HashMap<String, Integer> getNumberOfMedals() {
+//		
+//		medals.put("Gold medals", 0);
+//		medals.put("Silver medals", 0);
+//		medals.put("Bronze medals", 0);
+//		
+//		for(Result result : results) {
+//			
+//			Medal medal = result.getMedal();
+//			
+//			if(medal == Medal.GOLD) {
+//				
+//				medals.put("Gold medals", medals.get("Gold medals") + 1);
+//				
+//			} else if(medal == Medal.SILVER) {
+//			
+//				medals.put("Silver medals", medals.get("Silver medals") + 1);
+//				
+//			} else if(medal == Medal.BRONZE) {
+//			
+//				medals.put("Bronze medals", medals.get("Bronze medals") + 1);
+//				
+//			}
+//			
+//		}
+//		return medals;
+//		
+//	}
+	
 	public HashMap<String, Integer> getNumberOfMedals() {
 		
-		medals.put("Gold medals", 0);
-		medals.put("Silver medals", 0);
-		medals.put("Bronze medals", 0);
-		
-		for(Result result : results) {
-			
-			Medal medal = result.getMedal();
-			
-			if(medal == Medal.GOLD) {
-				
-				medals.put("Gold medals", medals.get("Gold medals") + 1);
-				
-			} else if(medal == Medal.SILVER) {
-			
-				medals.put("Silver medals", medals.get("Silver medals") + 1);
-				
-			} else if(medal == Medal.BRONZE) {
-			
-				medals.put("Bronze medals", medals.get("Bronze medals") + 1);
-				
-			}
-			
-//			switch(medal) {
-//			
-//				case GOLD:
-//					medals.put("Gold medals", medals.get("Gold medals") + 1);
-//					break;
-//				case SILVER:
-//					medals.put("Silver medals", medals.get("Silver medals") + 1);
-//					break;
-//				case BRONZE:
-//					medals.put("Bronze medals", medals.get("Bronze medals") + 1);
-//					break;
-//			}
-			
-		}
-		return medals;
+		return medalCounter.incrementMedalsBasedOnResults(results);
 		
 	}
 	

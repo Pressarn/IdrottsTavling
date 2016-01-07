@@ -6,20 +6,16 @@ public class Team implements Comparable<Team> {
   private String name;
   
   private ArrayList<Participant> members = new ArrayList<>();
-  
-//  private int numberOfGoldMedals;
-//  private int numberOfSilverMedals;
-//  private int numberOfBronzeMedals;
-  
-  private HashMap<String, Integer> medals = new HashMap<>();
+  //private HashMap<String, Integer> medals = new HashMap<>();
+  private MedalCounter medalCounter = new MedalCounter();
   
   public Team(String name) {
 	  
 	  this.name = name;
 	  
-	  medals.put("Gold medals", 0);
-	  medals.put("Silver medals", 0);
-	  medals.put("Bronze medals", 0);
+//	  medals.put("Gold medals", 0);
+//	  medals.put("Silver medals", 0);
+//	  medals.put("Bronze medals", 0);
 	  
   }
   
@@ -61,46 +57,26 @@ public class Team implements Comparable<Team> {
   
   public void calculateMedals() {
 	  
-	  medals.put("Gold medals", 0);
-	  medals.put("Silver medals", 0);
-	  medals.put("Bronze medals", 0);
-	  
-	  for(Participant member : members) {
-		  
-		  try {
-			  
-			  HashMap<String, Integer> membersMedals = member.getNumberOfMedals();
-			  
-			  medals.put("Gold medals", medals.get("Gold medals") + membersMedals.get("Gold medals"));
-			  medals.put("Silver medals", medals.get("Silver medals") + membersMedals.get("Silver medals"));
-			  medals.put("Bronze medals", medals.get("Bronze medals") + membersMedals.get("Bronze medals"));
-			  
-		  } catch(NullPointerException e) {
-			  
-			  continue;
-			  
-		  }
-		  
-	  }
+	  medalCounter.incrementMedalsBasedOnMembers(members);
 	  
   }
   
   public HashMap<String, Integer> getMedals() {
 	  
-	  return medals;
+	  return medalCounter.getMedals();
 	  
   }
   
   //Refaktorera, dela upp i flera delmetoder
   public int compareTo(Team anotherTeam) {
 	  
-	  int goldMedals = medals.get("Gold medals");
-	  int silverMedals = medals.get("Silver medals");
-	  int bronzeMedals = medals.get("Bronze medals");
+	  int goldMedals = medalCounter.getGoldMedals();
+	  int silverMedals = medalCounter.getSilverMedals();
+	  int bronzeMedals = medalCounter.getBronzeMedals();
 	  
-	  int anotherTeamsGoldMedals = anotherTeam.medals.get("Gold medals");
-	  int anotherTeamsSilverMedals = anotherTeam.medals.get("Silver medals");
-	  int anotherTeamsBronzeMedals = anotherTeam.medals.get("Bronze medals");
+	  int anotherTeamsGoldMedals = anotherTeam.medalCounter.getGoldMedals();
+	  int anotherTeamsSilverMedals = anotherTeam.medalCounter.getSilverMedals();
+	  int anotherTeamsBronzeMedals = anotherTeam.medalCounter.getBronzeMedals();
 	  
 	  if(goldMedals > anotherTeamsGoldMedals) {
 
@@ -135,9 +111,9 @@ public class Team implements Comparable<Team> {
 	  
 	  return String.format("%s\nGold medals: %s, Silver medals: %s, Bronze medals: %s\n",
 			  name, 
-			  medals.get("Gold medals"), 
-			  medals.get("Silver medals"), 
-			  medals.get("Bronze medals")
+			  medalCounter.getGoldMedals(), 
+			  medalCounter.getSilverMedals(), 
+			  medalCounter.getBronzeMedals()
 			  );
 	  
   }
