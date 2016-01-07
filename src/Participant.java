@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class Participant {
+public class Participant extends Medalier {
 
 	private String firstName;
 	private String lastName;
@@ -10,8 +10,6 @@ public class Participant {
 
 	private Team myTeam;
 	private ArrayList<Result> results = new ArrayList<>();
-	//private HashMap<String, Integer> medals = new HashMap<>();
-	private MedalCounter medalCounter = new MedalCounter();
 	
 	public Participant(String firstName, String lastName, Team team, int startNumber) {
 		
@@ -19,10 +17,6 @@ public class Participant {
 		this.lastName = lastName;
 		this.startNumber = startNumber;
 		myTeam = team;
-		
-//		medals.put("Gold medals", 0);
-//		medals.put("Silver medals", 0);
-//		medals.put("Bronze medals", 0);
 		
 	}
 	
@@ -94,39 +88,35 @@ public class Participant {
 		
 	}
 	
-
-//	public HashMap<String, Integer> getNumberOfMedals() {
-//		
-//		medals.put("Gold medals", 0);
-//		medals.put("Silver medals", 0);
-//		medals.put("Bronze medals", 0);
-//		
-//		for(Result result : results) {
-//			
-//			Medal medal = result.getMedal();
-//			
-//			if(medal == Medal.GOLD) {
-//				
-//				medals.put("Gold medals", medals.get("Gold medals") + 1);
-//				
-//			} else if(medal == Medal.SILVER) {
-//			
-//				medals.put("Silver medals", medals.get("Silver medals") + 1);
-//				
-//			} else if(medal == Medal.BRONZE) {
-//			
-//				medals.put("Bronze medals", medals.get("Bronze medals") + 1);
-//				
-//			}
-//			
-//		}
-//		return medals;
-//		
-//	}
-	
-	public HashMap<String, Integer> getNumberOfMedals() {
+	public HashMap<String, Integer> calculateMedals() {
 		
-		return medalCounter.incrementMedalsBasedOnResults(results);
+		/* 
+		 * Refaktorera, ta reda på varför switch-statementet inte fungerar, kan det vara något med Integer?
+		 * Man kan testa att inte returnera HashMap utan skriva tre separata metoder.
+		 */
+
+		resetMedals();
+
+		for(Result result : results) {
+
+			Medal medal = result.getMedal();
+
+			if(medal == Medal.GOLD) {
+
+				incrementGoldMedals(1);
+
+			} else if(medal == Medal.SILVER) {
+
+				incrementSilverMedals(1);
+
+			} else if(medal == Medal.BRONZE) {
+
+				incrementBronzeMedals(1);
+
+			}
+
+		}
+		return getMedals();
 		
 	}
 	
