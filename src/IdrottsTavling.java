@@ -92,6 +92,8 @@ public class IdrottsTavling {
 	
 	public void removeParticipant(Participant participant) {
 		
+		
+		
 		for(Event event : events) {
 				
 			event.removeParticipantsResults(participant);
@@ -186,7 +188,12 @@ public class IdrottsTavling {
 	}
 	
 	public ArrayList<Event> getEvents() {
-		
+
+		Collections.sort(
+				events, 
+				(Event event1, Event event2) -> 
+				event1.getName().compareTo(event2.getName())
+				);
 		return events;
 		
 	}

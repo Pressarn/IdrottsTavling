@@ -2,6 +2,7 @@
 public class Result implements Comparable<Result>{
 
 	private double result;
+	private int placement;
 
 	private Participant achievee;
 	private Event achievedIn;
@@ -14,6 +15,18 @@ public class Result implements Comparable<Result>{
 		this.achievedIn = achievedIn;
 		
 		achievedIn.addResult(this);
+		
+	}
+	
+	public void setPlacement(int placement) {
+		
+		this.placement = placement;
+		
+	}
+	
+	public int getPlacement() {
+		
+		return placement;
 		
 	}
 	

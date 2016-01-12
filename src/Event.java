@@ -40,7 +40,9 @@ public class Event {
 		
 		if(newResult.getResult() > existingResult.getResult()) {
 			
+			existingResult.setMedal(null);
 			results.remove(existingResult);
+			
 			return newResult;
 			
 		}
@@ -93,16 +95,6 @@ public class Event {
 			
 		}
 		
-//		for(Result result : results) {
-//			
-//			if(result.getAchievee() == participant) {
-//				
-//				results.remove(result);
-//				
-//			}
-//			
-//		}
-		
 	}
 	
 	//Refaktorera
@@ -130,7 +122,7 @@ public class Event {
 		Result silverBenchmark = null;
 		Result bronzeBenchmark = null;
 		
-		for(Result result : results) {
+		for(Result result : results) {			
 			
 			result.setMedal(null);
 			

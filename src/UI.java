@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class UI {
 	
@@ -170,17 +172,19 @@ public class UI {
 			
 			ArrayList<Result> results = idrottsTavling.getResultsByParticipantAndEvent(achievee, eventAchievedIn);
 			
-			System.out.printf("Results for %s from %s in %s:\n", 
+			System.out.printf("Results for %s from %s in %s: ", 
 							  achievee.getFullName(),
 							  achievee.getTeamName(),
 							  eventAchievedIn.getName());
 			
 			for(Result result : results) {
 				
-				System.out.println(result);
+				System.out.print(result + ", ");
 				
 			}
 				
+			System.out.println();
+			
 		} catch(NullPointerException e) {
 				
 				System.out.println("No participant with number " + achievee.getStartNumber() + ".");
@@ -217,35 +221,6 @@ public class UI {
 		
 	}
 	
-//	private void listResultsByParticipant() {
-//		
-//		int startNumber = inputHandler.readStartNumber();
-//		
-//		try {
-//			ArrayList<Result> participantsResults = idrottsTavling.getResultsByParticipant(startNumber);
-//			
-//			if(participantsResults.size() == 0) {
-//				
-//				System.out.println("That participant has no results");
-//				
-//			} else {
-//			
-//				for(Result result : participantsResults) {
-//				
-//					System.out.println(result);
-//					
-//				}
-//				
-//			}
-//			
-//		} catch(NullPointerException e) {
-//			
-//			System.out.println("There are no registered participants.");;
-//			
-//		}
-//		
-//	}
-	
 	private void listResultsByEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
@@ -253,12 +228,20 @@ public class UI {
 		
 		System.out.println("Results for " + eventName + ":");
 		
+		int placementCounter = 1;
+		
 		for(int i = 0; i < eventsResults.size(); i++) {
 			
 			Result result = eventsResults.get(i);
-			int placement = i + 1;
+			Result lastResult = i == 0 ? null : eventsResults.get(i - 1);
 			
-			System.out.println(placement + " " + result.getResult() + ", " + result.getAchievee().getFullName());
+			if( (lastResult != null) && (result.getResult() != lastResult.getResult()) ) {
+				
+				placementCounter = i + 1;
+				
+			}
+			
+			System.out.println(placementCounter + " " + result.getResult() + ", " + result.getAchievee().getFullName());
 			
 		}
 		
@@ -274,17 +257,15 @@ public class UI {
 			System.out.println("There are no registered teams.");
 
 		} else {
-
+			
 			for(Team team : teams) {
-
-				HashMap<String, Integer> medals = team.getMedals(); 
 				
 				System.out.printf(
 						  "%s\nGold medals: %s, Silver medals: %s, Bronze medals: %s\n",
 						  team.getName(), 
-						  medals.get("Gold medals"), 
-						  medals.get("Silver medals"), 
-						  medals.get("Bronze medals")
+						  team.getGoldMedals(), 
+						  team.getSilverMedals(), 
+						  team.getBronzeMedals()
 						  );
 
 			}

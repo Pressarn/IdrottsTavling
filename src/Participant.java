@@ -96,11 +96,17 @@ public class Participant extends Medalier {
 		 */
 
 		resetMedals();
-
+		
 		for(Result result : results) {
 
 			Medal medal = result.getMedal();
-
+			
+			if(medal == null) {
+				
+				continue;
+				
+			}
+			
 			if(medal == Medal.GOLD) {
 
 				incrementGoldMedals(1);

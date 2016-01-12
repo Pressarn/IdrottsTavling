@@ -253,10 +253,16 @@ teams
 message Tar bort den första deltagaren i lag Computer, hon har tagit alla medaljer för laget
 remove participant
 100
+100 meters
+javelin
+long jump
 teams
 message Tar bort den andra och sista deltagarna i lag Computer
 remove participant
 101
+100 meters
+javelin
+long jump
 teams
 message Resultat för samtliga deltagare individuellt
 participant
