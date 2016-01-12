@@ -118,9 +118,11 @@ public class UI {
 		
 		int achieveeStartNumber = inputHandler.readStartNumber();
 		String eventAchievedIn = inputHandler.readEventName();
-		double theActualResult = inputHandler.readResult();
 		
-		if(idrottsTavling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
+		if(idrottsTavling.checkNumberOfAttempts(achieveeStartNumber, eventAchievedIn)) {
+			
+			double theActualResult = inputHandler.readResult();
+			idrottsTavling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult);
 			
 			System.out.println("Result added.");
 			

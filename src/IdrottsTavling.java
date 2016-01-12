@@ -111,22 +111,21 @@ public class IdrottsTavling {
 		
 	}
 	
-	//Refaktorera, beh�ver resultat l�ggas till p� tv� st�llen? Samt Result och theActualResult? Fult. Fundera ocks� �ver om inte if/else ska komma i omv�nd ordning.
-	public boolean addResult(int startNumber, String eventName, double result) {
+	public boolean checkNumberOfAttempts(int startNumber, String eventName) {
 		
 		Participant achievee = getParticipant(startNumber);
 		Event eventAchievedIn = getEvent(eventName);
 		
-		if(achievee.hasReachedMaximumNumberOfAttempts(eventAchievedIn)) {
-
-			return false;
+		return achievee.hasReachedMaximumNumberOfAttempts(eventAchievedIn) ? false : true;
+		
+	}
+	
+	public void addResult(int startNumber, String eventName, double result) {
+		
+		Participant achievee = getParticipant(startNumber);
+		Event eventAchievedIn = getEvent(eventName);
 			
-		} else {
-			
-			achievee.addResult(result, eventAchievedIn);
-			return true;
-			
-		}
+		achievee.addResult(result, eventAchievedIn);
 		
 	}
 	

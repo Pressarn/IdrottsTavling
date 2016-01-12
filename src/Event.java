@@ -35,9 +35,42 @@ public class Event {
 		
 	}
 	
+	private Result resolveEqualResults(Result existingResult, Result newResult) {
+		
+		if(newResult.getResult() > existingResult.getResult()) {
+			
+			results.remove(existingResult);
+			return newResult;
+			
+		}
+		return null;
+		
+	}
+	
+	private Result determineResultToBeAdded(Result newResult) {
+		
+		for(Result existingResult : results) {
+			
+			if(existingResult.getAchievee() == newResult.getAchievee()) {
+				
+				return resolveEqualResults(existingResult, newResult);
+				
+			}
+			
+		}
+		return newResult;
+		
+	}
+	
 	public void addResult(Result result) {
 		
-		results.add(result);
+		Result resultToBeAdded = determineResultToBeAdded(result);
+		
+		if(resultToBeAdded != null) {
+			
+			results.add(resultToBeAdded);
+			
+		}
 		
 	}
 	
