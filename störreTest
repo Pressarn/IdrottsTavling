@@ -15,11 +15,11 @@ message Lägg till: Ada och Alan från datorhistorien
 add participant
 Ada
 Lovelace
-Computing
+Computer
 add participant
 Alan
 Turing
-Computing
+Computer
 message Lägger till resultat för Computer
 message Resultat för Ada i long jump
 add result
@@ -249,11 +249,15 @@ participant
 message Resultat för William
 participant
 104
-message Tar bort alla deltagarna i lag Computer
+teams
+message Tar bort den första deltagaren i lag Computer, hon har tagit alla medaljer för laget
 remove participant
 100
+teams
+message Tar bort den andra och sista deltagarna i lag Computer
 remove participant
 101
+teams
 message Resultat för samtliga deltagare individuellt
 participant
 105

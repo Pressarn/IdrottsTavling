@@ -5,15 +5,44 @@ public class TestResultAndMedal {
 
 	private IdrottsTavling idrottsTävling = new IdrottsTavling();
 	
+	Participant adaLovelace = null;
+	Participant arthurDent = null;
+	Participant jönsJönsson = null;
+	Participant barackObama = null;
+	
+	Event longJump = null;
+	Event marathon = null;
+	Event javelin = null;
+	Event hundredMeters = null;
+	
+	public void reinitialize() {
+		
+		idrottsTävling.reinitialize();
+		
+		adaLovelace = null;
+		arthurDent = null;
+		jönsJönsson = null;
+		barackObama = null;
+		
+		longJump = null;
+		marathon = null;
+		javelin = null;
+		hundredMeters = null;
+		
+	}
+	
 	@Test
 	public void testAddingOneMedal() {
 		
 		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
 		idrottsTävling.addEvent("Long Jump", 3, true);
 		
-		idrottsTävling.addResult(100, "Long Jump", 6.7);
+		adaLovelace = idrottsTävling.getParticipant(100);
+		longJump = idrottsTävling.getEvent("Long Jump");
 		
-		assertEquals(6.7, idrottsTävling.getResultsByParticipant(100).get(0).getResult(), 0);
+		idrottsTävling.addResult(adaLovelace, idrottsTävling.getEvent("Long Jump"), 6.7);
+		
+		assertEquals(6.7, idrottsTävling.getResultsByParticipant(adaLovelace).get(0).getResult(), 0);
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(0).getResult(), 0);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
@@ -27,10 +56,11 @@ public class TestResultAndMedal {
 		testAddingOneMedal();
 		
 		idrottsTävling.addParticipant("Arthur", "Dent", "Sf");
+		arthurDent = idrottsTävling.getParticipant(101);
 		
-		idrottsTävling.addResult(101, "Long Jump", 6.8);
+		idrottsTävling.addResult(arthurDent, longJump, 6.8);
 		
-		assertEquals(6.8, idrottsTävling.getResultsByParticipant(101).get(0).getResult(), 0);
+		assertEquals(6.8, idrottsTävling.getResultsByParticipant(arthurDent).get(0).getResult(), 0);
 		
 		assertEquals(6.8, idrottsTävling.getResultsByEvent("Long Jump").get(0).getResult(), 0);
 		assertEquals(6.7, idrottsTävling.getResultsByEvent("Long Jump").get(1).getResult(), 0);
@@ -48,9 +78,11 @@ public class TestResultAndMedal {
 		testAddingTwoMedals();
 		
 		idrottsTävling.addParticipant("Jöns", "Jönsson", "Historien");
-		idrottsTävling.addResult(102, "Long Jump", 6.9);
+		jönsJönsson = idrottsTävling.getParticipant(102);
 		
-		assertEquals(6.9, idrottsTävling.getResultsByParticipant(102).get(0).getResult(), 0);
+		idrottsTävling.addResult(jönsJönsson, longJump, 6.9);
+		
+		assertEquals(6.9, idrottsTävling.getResultsByParticipant(jönsJönsson).get(0).getResult(), 0);
 		
 		assertEquals(6.9, idrottsTävling.getResultsByEvent("Long Jump").get(0).getResult(), 0);
 		assertEquals(6.8, idrottsTävling.getResultsByEvent("Long Jump").get(1).getResult(), 0);
@@ -71,9 +103,11 @@ public class TestResultAndMedal {
 		testAddingThreeMedals();
 		
 		idrottsTävling.addParticipant("Barack", "Obama", "Presidents");
-		idrottsTävling.addResult(103, "Long Jump", 7.0);
+		barackObama = idrottsTävling.getParticipant(103);
 		
-		assertEquals(7.0, idrottsTävling.getResultsByParticipant(103).get(0).getResult(), 0);
+		idrottsTävling.addResult(barackObama, longJump, 7.0);
+		
+		assertEquals(7.0, idrottsTävling.getResultsByParticipant(barackObama).get(0).getResult(), 0);
 		
 		assertEquals(7.0, idrottsTävling.getResultsByEvent("Long Jump").get(0).getResult(), 0);
 		assertEquals(6.9, idrottsTävling.getResultsByEvent("Long Jump").get(1).getResult(), 0);
@@ -97,16 +131,17 @@ public class TestResultAndMedal {
 		testAddingFourMedals();
 		
 		idrottsTävling.addEvent("Marathon", 1, false);
+		marathon = idrottsTävling.getEvent("Marathon");
 		
-		idrottsTävling.addResult(100, "Marathon", 4.56);
-		idrottsTävling.addResult(101, "Marathon", 4.55);
-		idrottsTävling.addResult(102, "Marathon", 4.54);
-		idrottsTävling.addResult(103, "Marathon", 4.53);
+		idrottsTävling.addResult(adaLovelace, marathon, 4.56);
+		idrottsTävling.addResult(arthurDent, marathon, 4.55);
+		idrottsTävling.addResult(jönsJönsson, marathon, 4.54);
+		idrottsTävling.addResult(barackObama, marathon, 4.53);
 		
-		assertEquals(4.56, idrottsTävling.getResultsByParticipant(100).get(1).getResult(), 0);
-		assertEquals(4.55, idrottsTävling.getResultsByParticipant(101).get(1).getResult(), 0);
-		assertEquals(4.54, idrottsTävling.getResultsByParticipant(102).get(1).getResult(), 0);
-		assertEquals(4.53, idrottsTävling.getResultsByParticipant(103).get(1).getResult(), 0);
+		assertEquals(4.56, idrottsTävling.getResultsByParticipant(adaLovelace).get(1).getResult(), 0);
+		assertEquals(4.55, idrottsTävling.getResultsByParticipant(arthurDent).get(1).getResult(), 0);
+		assertEquals(4.54, idrottsTävling.getResultsByParticipant(jönsJönsson).get(1).getResult(), 0);
+		assertEquals(4.53, idrottsTävling.getResultsByParticipant(barackObama).get(1).getResult(), 0);
 		
 		assertEquals(4.53, idrottsTävling.getResultsByEvent("Marathon").get(0).getResult(), 0);
 		assertEquals(4.54, idrottsTävling.getResultsByEvent("Marathon").get(1).getResult(), 0);
@@ -127,13 +162,19 @@ public class TestResultAndMedal {
 	@Test
 	public void testAddingEqualResults() {
 		
+		reinitialize();
+		
 		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
 		idrottsTävling.addParticipant("Barack", "Obama", "Presidents");
 		
-		idrottsTävling.addEvent("Long Jump", 3, true);
+		adaLovelace = idrottsTävling.getParticipant(100);
+		barackObama = idrottsTävling.getParticipant(101);
 		
-		idrottsTävling.addResult(100, "Long Jump", 7.0);
-		idrottsTävling.addResult(101, "Long Jump", 7.0);
+		idrottsTävling.addEvent("Long Jump", 3, true);
+		longJump = idrottsTävling.getEvent("Long Jump");
+		
+		idrottsTävling.addResult(adaLovelace, longJump, 7.0);
+		idrottsTävling.addResult(barackObama, longJump, 7.0);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
@@ -148,8 +189,9 @@ public class TestResultAndMedal {
 		testAddingEqualResults();
 		
 		idrottsTävling.addParticipant("Arthur", "Dent", "Sf");
+		arthurDent = idrottsTävling.getParticipant(102);
 		
-		idrottsTävling.addResult(102, "Long Jump", 6.9);
+		idrottsTävling.addResult(arthurDent, longJump, 6.9);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
@@ -166,8 +208,9 @@ public class TestResultAndMedal {
 		testAddingSilverMedalierAfterAddingTwoGoldMedaliers();
 		
 		idrottsTävling.addParticipant("Jöns", "Jönsson", "Historien");
+		jönsJönsson = idrottsTävling.getParticipant(103);
 		
-		idrottsTävling.addResult(103, "Long Jump", 6.8);
+		idrottsTävling.addResult(jönsJönsson, longJump, 6.8);
 		
 		assertEquals("Computing\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
@@ -186,8 +229,9 @@ public class TestResultAndMedal {
 		testAddingEqualResults();
 		
 		idrottsTävling.addParticipant("Arthur", "Dent", "Sf");
+		arthurDent = idrottsTävling.getParticipant(102);
 		
-		idrottsTävling.addResult(102, "Long Jump", 7.1);
+		idrottsTävling.addResult(arthurDent, longJump, 7.1);
 		
 		assertEquals("Sf\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
@@ -201,53 +245,67 @@ public class TestResultAndMedal {
 	@Test
 	public void testListingResultsForOneParticipant() {
 		
+		reinitialize();
+		
 		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
+		adaLovelace = idrottsTävling.getParticipant(100);
 		
 		idrottsTävling.addEvent("Long Jump", 3, true);
 		idrottsTävling.addEvent("Marathon", 1, false);
 		idrottsTävling.addEvent("Javelin", 3, true);
 		idrottsTävling.addEvent("100 meters", 1, false);
 		
-		idrottsTävling.addResult(100, "Long Jump", 6.7);
-		idrottsTävling.addResult(100, "Marathon", 2.46);
-		idrottsTävling.addResult(100, "Javelin", 40.5);
-		idrottsTävling.addResult(100, "100 meters", 15.0);
+		longJump = idrottsTävling.getEvent("Long Jump");
+		marathon = idrottsTävling.getEvent("Marathon");
+		javelin = idrottsTävling.getEvent("Javelin");
+		hundredMeters = idrottsTävling.getEvent("100 meters");
 		
-		assertEquals("Event:\n100 meters\nResult: 15.0",
-				idrottsTävling.getResultsByParticipant(100).get(0).toString());
+		idrottsTävling.addResult(adaLovelace, longJump, 6.7);
+		idrottsTävling.addResult(adaLovelace, marathon, 2.46);
+		idrottsTävling.addResult(adaLovelace, javelin, 40.5);
+		idrottsTävling.addResult(adaLovelace, hundredMeters, 15.0);
 		
-		assertEquals("Event:\nJavelin\nResult: 40.5", 
-				idrottsTävling.getResultsByParticipant(100).get(1).toString());
+		assertEquals("15.0",
+				idrottsTävling.getResultsByParticipant(adaLovelace).get(0).toString());
 		
-		assertEquals("Event:\nLong Jump\nResult: 6.7", 
-					idrottsTävling.getResultsByParticipant(100).get(2).toString());
+		assertEquals("40.5", 
+				idrottsTävling.getResultsByParticipant(adaLovelace).get(1).toString());
 		
-		assertEquals("Event:\nMarathon\nResult: 2.46", 
-				idrottsTävling.getResultsByParticipant(100).get(3).toString());
+		assertEquals("6.7", 
+					idrottsTävling.getResultsByParticipant(adaLovelace).get(2).toString());
+		
+		assertEquals("2.46", 
+				idrottsTävling.getResultsByParticipant(adaLovelace).get(3).toString());
 		
 	}
 	
 	@Test
 	public void testMaximumNumberOfAttempts() {
 		
+		reinitialize();
+		
 		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
+		adaLovelace = idrottsTävling.getParticipant(100);
+		
 		idrottsTävling.addEvent("Long Jump", 3, true);
+		longJump = idrottsTävling.getEvent("Long Jump");
 		
-		idrottsTävling.addResult(100, "Long Jump", 6.7);
-		idrottsTävling.addResult(100, "Long Jump", 6.8);
+		idrottsTävling.addResult(adaLovelace, longJump, 6.7);
+		idrottsTävling.addResult(adaLovelace, longJump, 6.8);
 		
-		Participant adaLovelace = idrottsTävling.getParticipant(100);
-		Event longJump = idrottsTävling.getEvent("Long Jump");
+//		Participant adaLovelace = idrottsTävling.getParticipant(100);
+//		Event longJump = idrottsTävling.getEvent("Long Jump");
 		
 		assertEquals(false, adaLovelace.hasReachedMaximumNumberOfAttempts(longJump));
 		
-		idrottsTävling.addResult(100, "Long Jump", 6.9);
+		idrottsTävling.addResult(adaLovelace, longJump, 6.9);
 		
 		assertEquals(true, adaLovelace.hasReachedMaximumNumberOfAttempts(longJump));
 		
-		idrottsTävling.addResult(100,  "Long Jump", 7.0);
+		idrottsTävling.addResult(adaLovelace,  longJump, 7.0);
 		
-		assertEquals(3, longJump.getSortedResults().size());
+		assertEquals(1, longJump.getSortedResults().size());
+		assertEquals(4, adaLovelace.getResultsSortedByName().size());
 		assertEquals(6.9, longJump.getSortedResults().get(0).getResult(), 0);
 	}
 	

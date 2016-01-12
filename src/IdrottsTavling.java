@@ -92,9 +92,9 @@ public class IdrottsTavling {
 	
 	public void removeParticipant(Participant participant) {
 		
-		for(Event e : events) {
+		for(Event event : events) {
 				
-			e.removeParticipantsResults(participant);
+			event.removeParticipantsResults(participant);
 				
 		}
 		

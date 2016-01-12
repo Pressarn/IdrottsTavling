@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Event {
 	
@@ -64,27 +65,43 @@ public class Event {
 	
 	public void addResult(Result result) {
 		
-		Result resultToBeAdded = determineResultToBeAdded(result);
+		if(!(result.getAchievee().hasReachedMaximumNumberOfAttempts(this))) {
 		
-		if(resultToBeAdded != null) {
-			
-			results.add(resultToBeAdded);
-			
+			Result resultToBeAdded = determineResultToBeAdded(result);
+
+			if((resultToBeAdded != null)) {
+
+				results.add(resultToBeAdded);
+
+			}
 		}
-		
 	}
 	
 	public void removeParticipantsResults(Participant participant) {
 		
-		for(Result result : results) {
+		Iterator<Result> iterator = results.iterator();
+		
+		while(iterator.hasNext()) {
+			
+			Result result = iterator.next();
 			
 			if(result.getAchievee() == participant) {
 				
-				results.remove(result);
+				iterator.remove();
 				
 			}
 			
 		}
+		
+//		for(Result result : results) {
+//			
+//			if(result.getAchievee() == participant) {
+//				
+//				results.remove(result);
+//				
+//			}
+//			
+//		}
 		
 	}
 	
