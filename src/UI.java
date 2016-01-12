@@ -29,12 +29,21 @@ public class UI {
 		}
 		
 	}
-
+	
+	private Participant getParticipant() {
+		
+		int startNumber = inputHandler.readStartNumber();
+		
+		return idrottsTavling.getParticipant(startNumber);
+		
+	}
+	
 	private void addEvent() {
 		
-		String eventName = inputHandler.readEventName();
+		Event event = getEvent();
+		String eventName = inputHandler.getLastString();
 		
-		if(idrottsTavling.getEvent(eventName) == null) {
+		if(event == null) {
 			
 			int attemptsAllowed = inputHandler.readAttemptsAllowed();
 			boolean biggerBetter = inputHandler.readBiggerBetter();
@@ -48,6 +57,13 @@ public class UI {
 			System.out.println(eventName + " has already been added");
 			
 		}
+		
+	}
+	
+	private Event getEvent() {
+		
+		String eventName = inputHandler.readEventName();
+		return getEvent(eventName);
 		
 	}
 	
@@ -84,13 +100,11 @@ public class UI {
 	}
 	
 	private void removeParticipant() {
-			
-		int startNumber = inputHandler.readStartNumber();
 		
 		try {
 			
-			Participant participantToBeRemoved = idrottsTavling.getParticipant(startNumber);
-			idrottsTavling.removeParticipant(startNumber);
+			Participant participantToBeRemoved = getParticipant();
+			idrottsTavling.removeParticipant(participantToBeRemoved);
 			
 			System.out.printf("%s from %s with number %d removed\n",
 								participantToBeRemoved.getFullName(),
@@ -99,7 +113,7 @@ public class UI {
 			
 		} catch(NullPointerException e) {
 			
-			System.out.println("Couldn't find a participant with that startnumber");
+			System.out.println("No participant with number " + inputHandler.getLastInt() + ".");
 			
 		}
 		
@@ -116,65 +130,135 @@ public class UI {
 	// hos participanten
 	private void addResult() {
 		
-		int achieveeStartNumber = inputHandler.readStartNumber();
-		String eventAchievedIn = inputHandler.readEventName();
+		Participant achievee = getParticipant();
 		
-		if(idrottsTavling.checkNumberOfAttempts(achieveeStartNumber, eventAchievedIn)) {
+		if(achievee == null) {
 			
+			System.out.println("No participant with number " + inputHandler.getLastInt() + ".");
+			return;
+			
+		}
+		
+		Event eventAchievedIn = getEvent();
+		
+		if(eventAchievedIn == null) {
+			
+			System.out.println(inputHandler.getLastString() + " is not a registered event.");
+			return;
+			
+		}
+
+		if(idrottsTavling.checkNumberOfAttempts(achievee, eventAchievedIn)) {
+
 			double theActualResult = inputHandler.readResult();
-			idrottsTavling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult);
-			
-			System.out.println("Result added.");
-			
+			idrottsTavling.addResult(achievee, eventAchievedIn, theActualResult);
+
+			listResultsByParticipantAndEvent(achievee, eventAchievedIn);
+
 		} else {
-			
+
 			System.out.println(
 					"The participant has already reached the maximum number of attempts allowed for that event.");
+
+		}
+		
+	}
+	
+	private void listResultsByParticipantAndEvent(Participant achievee, Event eventAchievedIn) {
+		
+		try {
 			
+			ArrayList<Result> results = idrottsTavling.getResultsByParticipantAndEvent(achievee, eventAchievedIn);
+			
+			System.out.printf("Results for %s from %s in %s:\n", 
+							  achievee.getFullName(),
+							  achievee.getTeamName(),
+							  eventAchievedIn.getName());
+			
+			for(Result result : results) {
+				
+				System.out.println(result);
+				
+			}
+				
+		} catch(NullPointerException e) {
+				
+				System.out.println("No participant with number " + achievee.getStartNumber() + ".");
+				
 		}
 		
 	}
 	
 	private void listResultsByParticipant() {
 		
-		int startNumber = inputHandler.readStartNumber();
+		Participant achievee = getParticipant();
 		
-		try {
-			ArrayList<Result> participantsResults = idrottsTavling.getResultsByParticipant(startNumber);
+		if(achievee == null) {
 			
-			if(participantsResults.size() == 0) {
-				
-				System.out.println("That participant has no results");
-				
-			} else {
+			System.out.println("No participant with number " + inputHandler.getLastInt() + ".");
+			return;
 			
-				for(Result result : participantsResults) {
-				
-					System.out.println(result);
-					
-				}
-				
-			}
+		}
+		
+		ArrayList<Event> allEvents = idrottsTavling.getEvents();
+		
+		if(allEvents.size() == 0) {
 			
-		} catch(NullPointerException e) {
+			System.out.println("There are no events registered.");
+			return;
 			
-			System.out.println("There are no registered participants.");;
+		}
+		
+		for(Event event : allEvents) {
+			
+			listResultsByParticipantAndEvent(achievee, event);
 			
 		}
 		
 	}
+	
+//	private void listResultsByParticipant() {
+//		
+//		int startNumber = inputHandler.readStartNumber();
+//		
+//		try {
+//			ArrayList<Result> participantsResults = idrottsTavling.getResultsByParticipant(startNumber);
+//			
+//			if(participantsResults.size() == 0) {
+//				
+//				System.out.println("That participant has no results");
+//				
+//			} else {
+//			
+//				for(Result result : participantsResults) {
+//				
+//					System.out.println(result);
+//					
+//				}
+//				
+//			}
+//			
+//		} catch(NullPointerException e) {
+//			
+//			System.out.println("There are no registered participants.");;
+//			
+//		}
+//		
+//	}
 	
 	private void listResultsByEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
 		ArrayList<Result> eventsResults = idrottsTavling.getResultsByEvent(eventName);
 		
-		System.out.println(eventName + ":");
+		System.out.println("Results for " + eventName + ":");
 		
-		for(Result result : eventsResults) {
+		for(int i = 0; i < eventsResults.size(); i++) {
 			
-			System.out.println(result.getResult() + ", " + result.getAchievee().getFullName());
-			System.out.println(result.getAchievee().getTeam().getName());
+			Result result = eventsResults.get(i);
+			int placement = i + 1;
+			
+			System.out.println(placement + " " + result.getResult() + ", " + result.getAchievee().getFullName());
 			
 		}
 		

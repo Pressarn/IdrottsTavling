@@ -54,7 +54,7 @@ public class Result implements Comparable<Result>{
 	
 	public String toString() {
 		
-		return String.format("Event:\n%s\nResult: %s", achievedIn.getName(), result);
+		return String.format("%s", result);
 		
 	}
 	

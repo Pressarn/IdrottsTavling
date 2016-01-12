@@ -90,9 +90,7 @@ public class IdrottsTavling {
 		
 	}
 	
-	public void removeParticipant(int startNumber) {
-			
-		Participant participant = getParticipant(startNumber);
+	public void removeParticipant(Participant participant) {
 		
 		for(Event e : events) {
 				
@@ -111,29 +109,22 @@ public class IdrottsTavling {
 		
 	}
 	
-	public boolean checkNumberOfAttempts(int startNumber, String eventName) {
-		
-		Participant achievee = getParticipant(startNumber);
-		Event eventAchievedIn = getEvent(eventName);
+	public boolean checkNumberOfAttempts(Participant achievee, Event eventAchievedIn) {
 		
 		return achievee.hasReachedMaximumNumberOfAttempts(eventAchievedIn) ? false : true;
 		
 	}
 	
-	public void addResult(int startNumber, String eventName, double result) {
-		
-		Participant achievee = getParticipant(startNumber);
-		Event eventAchievedIn = getEvent(eventName);
+	public void addResult(Participant achievee, Event eventAchievedIn, double result) {
 			
 		achievee.addResult(result, eventAchievedIn);
 		
 	}
 	
-	public ArrayList<Result> getResultsByParticipant(int startNumber) {
-		
-		Participant participant = getParticipant(startNumber);
+	public ArrayList<Result> getResultsByParticipant(Participant participant) {
 		
 		return participant.getResultsSortedByName();
+		
 		
 	}
 	
@@ -141,6 +132,25 @@ public class IdrottsTavling {
 		
 		Event event = getEvent(eventName);
 		return event.getSortedResults();
+		
+	}
+	
+	public ArrayList<Result>getResultsByParticipantAndEvent(Participant achievee, Event eventAchievedIn) {
+		
+		ArrayList<Result> resultsForEvent = new ArrayList<>();
+		
+		ArrayList<Result> allResultsForParticipant = getResultsByParticipant(achievee);
+		
+		for(Result result : allResultsForParticipant) {
+			
+			if(result.getNameOfEventAchievedIn().equals(eventAchievedIn.getName())) {
+				
+				resultsForEvent.add(result);
+				
+			}
+			
+		}
+		return resultsForEvent;
 		
 	}
 	

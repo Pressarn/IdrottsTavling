@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Team extends Medalier implements Comparable<Team> {
 

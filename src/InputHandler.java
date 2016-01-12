@@ -2,14 +2,30 @@ import java.util.Scanner;
 
 public class InputHandler {
 	
+	private int lastInt;
+	private String lastString;
+	
 	private Scanner scanner = new Scanner(System.in);
 
 	//Refaktorera, allting bör egentligen normaliseras, typ. Iaf trimmas.
+	
+	public int getLastInt() {
+		
+		return lastInt;
+		
+	}
+	
+	public String getLastString() {
+		
+		return lastString;
+		
+	}
 	
 	public int readInt(String leadText) {
 
 		System.out.print(leadText);
 		int number = scanner.nextInt();
+		lastInt = number;
 
 		scanner.nextLine();
 
@@ -68,7 +84,11 @@ public class InputHandler {
 	public String readString(String leadText) {
 
 		System.out.print(leadText);
-		return scanner.nextLine();
+		
+		String text = scanner.nextLine();
+		lastString = text;
+		
+		return text;
 
 	}
 	
@@ -84,6 +104,8 @@ public class InputHandler {
 		}
 		
 		name = normalizeString(name);
+		
+		lastString = name;
 		
 		return name;
 		
