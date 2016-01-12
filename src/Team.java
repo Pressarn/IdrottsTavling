@@ -55,58 +55,36 @@ public class Team extends Medalier implements Comparable<Team> {
 
 		for(Participant member : members) {
 
-			try {
+			member.calculateMedals();
 
-				HashMap<String, Integer> membersMedals = member.calculateMedals();
-
-				incrementGoldMedals(membersMedals.get("Gold medals"));
-				incrementSilverMedals(membersMedals.get("Silver medals"));
-				incrementBronzeMedals(membersMedals.get("Bronze medals"));
-
-			} catch(NullPointerException e) {
-
-				continue;
-
-			}
+			incrementMedals(member.getGoldMedals(), 
+							member.getSilverMedals(), 
+							member.getBronzeMedals());
 
 		}
-	  
-  }
-  
-  public HashMap<String, Integer> getMedals() {
-	  
-	  return getMedals();
 	  
   }
   
   //Refaktorera, dela upp i flera delmetoder
   public int compareTo(Team anotherTeam) {
 	  
-	  int goldMedals = getGoldMedals();
-	  int silverMedals = getSilverMedals();
-	  int bronzeMedals = getBronzeMedals();
-	  
-	  int anotherTeamsGoldMedals = anotherTeam.getGoldMedals();
-	  int anotherTeamsSilverMedals = anotherTeam.getSilverMedals();
-	  int anotherTeamsBronzeMedals = anotherTeam.getBronzeMedals();
-	  
-	  if(goldMedals > anotherTeamsGoldMedals) {
+	  if(getGoldMedals() > anotherTeam.getGoldMedals()) {
 
 		  return -1;
 
-	  } else if (goldMedals == anotherTeamsGoldMedals) {
+	  } else if (getGoldMedals() == anotherTeam.getGoldMedals()) {
 
-		  if(silverMedals > anotherTeamsSilverMedals) {
+		  if(getSilverMedals() > anotherTeam.getSilverMedals()) {
 
 			  return -1;
 
-		  } else if(silverMedals == anotherTeamsSilverMedals) {
+		  } else if(getSilverMedals() == anotherTeam.getSilverMedals()) {
 
-			  if(bronzeMedals > anotherTeamsBronzeMedals) {
+			  if(getBronzeMedals() > anotherTeam.getBronzeMedals()) {
 
 				  return -1;
 
-			  } else if(bronzeMedals == anotherTeamsBronzeMedals) {
+			  } else if(getBronzeMedals() == anotherTeam.getBronzeMedals()) {
 
 				  return this.name.compareTo(anotherTeam.name);
 

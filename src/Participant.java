@@ -81,14 +81,15 @@ public class Participant extends Medalier {
 		//Överlagrar den vanliga sorteringsordningen hos Result.
 		Collections.sort(
 				results, 
-				(Result result1, Result result2) -> result1.getNameOfEventAchievedIn().compareTo(result2.getNameOfEventAchievedIn())
+				(Result result1, Result result2) -> 
+					result1.getNameOfEventAchievedIn().compareTo(result2.getNameOfEventAchievedIn())
 		);
 		
 		return results;
 		
 	}
 	
-	public HashMap<String, Integer> calculateMedals() {
+	public void calculateMedals() {
 		
 		/* 
 		 * Refaktorera, ta reda på varför switch-statementet inte fungerar, kan det vara något med Integer?
@@ -116,7 +117,6 @@ public class Participant extends Medalier {
 			}
 
 		}
-		return getMedals();
 		
 	}
 	

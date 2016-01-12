@@ -6,7 +6,7 @@ public class UI {
 	private static final int MESSAGE_BOX_WIDTH = 60;
 	
 	private InputHandler inputHandler = new InputHandler();
-	private IdrottsTavling idrottsTävling = new IdrottsTavling();
+	private IdrottsTavling idrottsTavling = new IdrottsTavling();
 
 	private void printMenu() {
 		
@@ -16,7 +16,7 @@ public class UI {
 							 "add result",
 							 "participant",
 							 "teams",
-							 "TEAMNAME",
+							 "EVENTNAME",
 							 "reinitialize",
 							 "message MESSAGE",
 							 "print menu"};
@@ -34,12 +34,12 @@ public class UI {
 		
 		String eventName = inputHandler.readEventName();
 		
-		if(idrottsTävling.getEvent(eventName) == null) {
+		if(idrottsTavling.getEvent(eventName) == null) {
 			
 			int attemptsAllowed = inputHandler.readAttemptsAllowed();
 			boolean biggerBetter = inputHandler.readBiggerBetter();
 
-			idrottsTävling.addEvent(eventName, attemptsAllowed, biggerBetter);
+			idrottsTavling.addEvent(eventName, attemptsAllowed, biggerBetter);
 
 			System.out.println(eventName + " added");
 			
@@ -61,7 +61,7 @@ public class UI {
 		
 		eventName = inputHandler.normalizeString(eventName);
 		
-		return idrottsTävling.getEvent(eventName);
+		return idrottsTavling.getEvent(eventName);
 		
 	}
 	
@@ -71,9 +71,9 @@ public class UI {
 		String lastName = inputHandler.readName("Last Name: ");
 		String teamName = inputHandler.readName("Team name: ");
 		
-		int startNumber = idrottsTävling.getParticipantCounter();
+		int startNumber = idrottsTavling.getParticipantCounter();
 		
-		idrottsTävling.addParticipant(firstName, lastName, teamName);
+		idrottsTavling.addParticipant(firstName, lastName, teamName);
 		
 		System.out.printf("%s %s from %s with number %d added\n",
 							firstName,
@@ -89,8 +89,8 @@ public class UI {
 		
 		try {
 			
-			Participant participantToBeRemoved = idrottsTävling.getParticipant(startNumber);
-			idrottsTävling.removeParticipant(startNumber);
+			Participant participantToBeRemoved = idrottsTavling.getParticipant(startNumber);
+			idrottsTavling.removeParticipant(startNumber);
 			
 			System.out.printf("%s from %s with number %d removed\n",
 								participantToBeRemoved.getFullName(),
@@ -120,7 +120,7 @@ public class UI {
 		String eventAchievedIn = inputHandler.readEventName();
 		double theActualResult = inputHandler.readResult();
 		
-		if(idrottsTävling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
+		if(idrottsTavling.addResult(achieveeStartNumber, eventAchievedIn, theActualResult)) {
 			
 			System.out.println("Result added.");
 			
@@ -138,7 +138,7 @@ public class UI {
 		int startNumber = inputHandler.readStartNumber();
 		
 		try {
-			ArrayList<Result> participantsResults = idrottsTävling.getResultsByParticipant(startNumber);
+			ArrayList<Result> participantsResults = idrottsTavling.getResultsByParticipant(startNumber);
 			
 			if(participantsResults.size() == 0) {
 				
@@ -165,7 +165,7 @@ public class UI {
 	private void listResultsByEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
-		ArrayList<Result> eventsResults = idrottsTävling.getResultsByEvent(eventName);
+		ArrayList<Result> eventsResults = idrottsTavling.getResultsByEvent(eventName);
 		
 		System.out.println(eventName + ":");
 		
@@ -181,7 +181,7 @@ public class UI {
 	//Refaktorera
 	private void listResultsByTeam() {
 			
-		ArrayList<Team> teams = idrottsTävling.getResultsSortedByTeam();
+		ArrayList<Team> teams = idrottsTavling.getResultsSortedByTeam();
 
 		if(teams.size() == 0) {
 
@@ -235,7 +235,8 @@ public class UI {
 			boolean messageSpansSeveralLines = message.length() > 55 ? true : false;
 			
 			boolean indexIsEvenlyDivisibleBy56 = i % 56 == 0 ? true : false;
-			boolean indexIsAtEndOfLine = (indexIsEvenlyDivisibleBy56 && (i < message.length())) ? true : false;
+			boolean indexIsNotAtEndOfMessage = i < message.length() ? true : false;
+			boolean indexIsAtEndOfLine = indexIsEvenlyDivisibleBy56 && indexIsNotAtEndOfMessage;
 			
 			int numberOfConstantWhiteSpacesAndStars = 4;
 			int charactersLeftUntilEndOfBox = (MESSAGE_BOX_WIDTH - i) - numberOfConstantWhiteSpacesAndStars;
@@ -279,6 +280,7 @@ public class UI {
 					System.out.print("*");
 					
 				}
+				
 			}
 			
 		}
@@ -290,7 +292,7 @@ public class UI {
 	
 	private void listEvents() {
 		
-		ArrayList<Event> events = idrottsTävling.getEvents();
+		ArrayList<Event> events = idrottsTavling.getEvents();
 		
 		for(Event event : events) {
 			
@@ -302,7 +304,7 @@ public class UI {
 	
 	private void listTeams() {
 		
-		ArrayList<Team> teams = idrottsTävling.getTeams();
+		ArrayList<Team> teams = idrottsTavling.getTeams();
 		
 		for(Team team : teams) {
 			
@@ -315,7 +317,7 @@ public class UI {
 	private void listMembersOfTeam() {
 		
 		String teamName = inputHandler.readString("Team name: ");
-		ArrayList<Participant> teamsMembers = idrottsTävling.getMembersOfTeam(teamName);
+		ArrayList<Participant> teamsMembers = idrottsTavling.getMembersOfTeam(teamName);
 		
 		System.out.println("Members of team " + teamName + ":");
 		
@@ -361,7 +363,7 @@ public class UI {
 				listResultsByTeam();
 				break;
 			case "reinitialize":
-				idrottsTävling.reinitialize();
+				idrottsTavling.reinitialize();
 				break;
 			case "print menu":
 				printMenu();

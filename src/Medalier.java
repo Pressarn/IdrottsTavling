@@ -59,6 +59,14 @@ public abstract class Medalier {
 		
 	}
 	
+	public void incrementMedals(int numberOfGoldMedals, int numberOfSilverMedals, int numberOfBronzeMedals) {
+		
+		incrementGoldMedals(numberOfGoldMedals);
+		incrementSilverMedals(numberOfSilverMedals);
+		incrementBronzeMedals(numberOfBronzeMedals);
+		
+	}
+	
 	public void resetMedals() {
 		
 		medals.put("Gold medals", 0);
