@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
-public abstract class Medalier {
+public abstract class MedalCounter {
 
 	private HashMap<String, Integer> medals = new HashMap<>();
 	
-	public Medalier() {
+	public MedalCounter() {
 		
 		medals.put("Gold medals", 0);
 		medals.put("Silver medals", 0);

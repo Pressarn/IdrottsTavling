@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Team extends Medalier implements Comparable<Team> {
+public class Team extends MedalCounter implements Comparable<Team> {
 
   private String name;
   

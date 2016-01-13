@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Participant extends Medalier {
+public class Participant extends MedalCounter {
 
 	private String firstName;
 	private String lastName;
