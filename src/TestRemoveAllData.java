@@ -11,7 +11,7 @@ public class TestRemoveAllData {
 		
 		idrottsTävling.addParticipant("Ada", "Lovelace", "Computing");
 		idrottsTävling.addEvent("Long Jump", 3, true);
-		idrottsTävling.addResult(100, "Long Jump", 6.7);
+		idrottsTävling.addResult(idrottsTävling.getParticipant(100), idrottsTävling.getEvent("Long Jump"), 6.7);
 		
 		assertEquals("Ada Lovelace", idrottsTävling.getParticipant(100).getFullName());
 		assertEquals(1, idrottsTävling.getTeams().size());

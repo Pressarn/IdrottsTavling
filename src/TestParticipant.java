@@ -39,7 +39,7 @@ public class TestParticipant {
 		
 		testAddingOneParticipant();
 		
-		idrottsTävling.removeParticipant(100);
+		idrottsTävling.removeParticipant(idrottsTävling.getParticipant(100));
 		
 		assertEquals(null, idrottsTävling.getParticipant(100));
 		
