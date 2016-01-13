@@ -228,20 +228,9 @@ public class UI {
 		
 		System.out.println("Results for " + eventName + ":");
 		
-		int placementCounter = 1;
-		
-		for(int i = 0; i < eventsResults.size(); i++) {
+		for(Result result : eventsResults) {
 			
-			Result result = eventsResults.get(i);
-			Result lastResult = i == 0 ? null : eventsResults.get(i - 1);
-			
-			if( (lastResult != null) && (result.getResult() != lastResult.getResult()) ) {
-				
-				placementCounter = i + 1;
-				
-			}
-			
-			System.out.println(placementCounter + " " + result.getResult() + ", " + result.getAchievee().getFullName());
+			System.out.println(result.getPlacement() + " " + result.getResult() + ", " + result.getAchievee().getFullName());
 			
 		}
 		

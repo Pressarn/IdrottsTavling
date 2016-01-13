@@ -132,6 +132,8 @@ public class IdrottsTavling {
 	
 	public ArrayList<Result> getResultsByEvent(String eventName) {
 		
+		resolveResults();
+		
 		Event event = getEvent(eventName);
 		return event.getSortedResults();
 		
@@ -176,10 +178,16 @@ public class IdrottsTavling {
 		
 	}
 	
-	public ArrayList<Team> getResultsSortedByTeam() {
+	private void resolveResults() {
 		
 		assignMedals();
 		countMedals();
+		
+	}
+	
+	public ArrayList<Team> getResultsSortedByTeam() {
+		
+		resolveResults();
 		
 		Collections.sort(teams);
 		

@@ -97,18 +97,7 @@ public class Event {
 		
 	}
 	
-	//Refaktorera
 	public void assignMedals() {
-		
-		/*
-		 * 
-		 * Anledningen till att jag använder objekt som benchmarks och inte doublevärden
-		 * är att det är möjligt att registrera ett resultat som är 0.0. Därför kan jag inte
-		 * använda if(benchmark == 0.0) { benchmark = theActualResult } som check för att sätta
-		 * ett nytt benchmark.
-		 * 
-		 * 
-		 */
 		
 		if(results.size() == 0) {
 			
@@ -118,50 +107,51 @@ public class Event {
 		
 		Collections.sort(results);
 		
-		Result goldBenchmark = results.get(0);
-		Result silverBenchmark = null;
-		Result bronzeBenchmark = null;
+		int placementCounter = 1;
+		int maximumNumberOfMedaliers = 3;
+		int numberOfMedals = 0;
 		
-		for(Result result : results) {			
+		for(int i = 0; i < results.size(); i++) {
 			
-			result.setMedal(null);
+			Result result = results.get(i);
+			Result lastResult = i == 0 ? null : results.get(i - 1);
 			
-			double theActualResult = result.getResult();
+			boolean thereIsAPreviousResult = lastResult != null;
+			boolean currentResultIsNotEqualToLastResult = result.getResult() != lastResult.getResult();
+			boolean resultIsFirstResultAfterThreeConsecutiveEqualMedalResults = (numberOfMedals == 3) && (i == 3);
 			
-			if(theActualResult == goldBenchmark.getResult()) {
+			if( (thereIsAPreviousResult && currentResultIsNotEqualToLastResult) || resultIsFirstResultAfterThreeConsecutiveEqualMedalResults ) {
 				
-				result.setMedal(Medal.GOLD);
-				
-			} else {
-				
-				if(silverBenchmark == null) {
-					
-					silverBenchmark = result;
-					
-				}
-					
-				if(theActualResult == silverBenchmark.getResult()) {
-					
-					result.setMedal(Medal.SILVER);
-					
-				} else {
-					
-					if(bronzeBenchmark == null) {
-						
-						bronzeBenchmark = result;
-						
-					}
-					
-					if(theActualResult == bronzeBenchmark.getResult()) {
-						
-						result.setMedal(Medal.BRONZE);
-						
-					}
-					
-				}
+				placementCounter = i + 1;
 				
 			}
 			
+			result.setPlacement(placementCounter);
+				
+			if(i + 1 <= maximumNumberOfMedaliers) {
+				
+				switch(placementCounter) {
+
+				case(1):
+					result.setMedal(Medal.GOLD);
+					numberOfMedals++;
+				break;
+				case(2):
+					result.setMedal(Medal.SILVER);
+					numberOfMedals++;
+				break;
+				case(3):
+					result.setMedal(Medal.BRONZE);
+					numberOfMedals++;
+				break;
+				
+				}
+			} else {
+				
+				result.setMedal(null);
+				
+			}
+	
 		}
 		
 	}
