@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Participant extends MedalCounter {
+public class Participant {
 
 	private String firstName;
 	private String lastName;
@@ -9,6 +9,7 @@ public class Participant extends MedalCounter {
 
 	private Team myTeam;
 	private ArrayList<Result> results = new ArrayList<>();
+	private MedalCounter medalCounter = new MedalCounter();
 	
 	public Participant(String firstName, String lastName, Team team, int startNumber) {
 		
@@ -88,6 +89,24 @@ public class Participant extends MedalCounter {
 		
 	}
 	
+	public Integer getGoldMedals() {
+
+		return medalCounter.getGoldMedals();
+
+	}
+	  
+	public Integer getSilverMedals() {
+
+		return medalCounter.getSilverMedals();
+
+	}
+
+	public Integer getBronzeMedals() {
+
+		return medalCounter.getBronzeMedals();
+
+	}
+	
 	public void calculateMedals() {
 		
 		/* 
@@ -95,7 +114,7 @@ public class Participant extends MedalCounter {
 		 * Man kan testa att inte returnera HashMap utan skriva tre separata metoder.
 		 */
 
-		resetMedals();
+		medalCounter.resetMedals();
 		
 		for(Result result : results) {
 
@@ -109,15 +128,15 @@ public class Participant extends MedalCounter {
 			
 			if(medal == Medal.GOLD) {
 
-				incrementGoldMedals(1);
+				medalCounter.incrementGoldMedals(1);
 
 			} else if(medal == Medal.SILVER) {
 
-				incrementSilverMedals(1);
+				medalCounter.incrementSilverMedals(1);
 
 			} else if(medal == Medal.BRONZE) {
 
-				incrementBronzeMedals(1);
+				medalCounter.incrementBronzeMedals(1);
 
 			}
 

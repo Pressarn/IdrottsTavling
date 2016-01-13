@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public abstract class MedalCounter {
+public class MedalCounter {
 
 	private HashMap<String, Integer> medals = new HashMap<>();
 	
