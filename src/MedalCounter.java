@@ -1,18 +1,8 @@
-import java.util.HashMap;
-
 public class MedalCounter {
 
-	private HashMap<String, Integer> medals = new HashMap<>();
+	private int[] medals = new int[3];
 	
-	public MedalCounter() {
-		
-		medals.put("Gold medals", 0);
-		medals.put("Silver medals", 0);
-		medals.put("Bronze medals", 0);
-		
-	}
-	
-	public HashMap<String, Integer> getMedals() {
+	public int[] getMedals() {
 		
 		return medals;
 		
@@ -25,37 +15,37 @@ public class MedalCounter {
 	
 	public Integer getGoldMedals() {
 		
-		return medals.get("Gold medals");
+		return medals[0];
 		
 	}
 	
 	public Integer getSilverMedals() {
 		
-		return medals.get("Silver medals");
+		return medals[1];
 		
 	}
 
 	public Integer getBronzeMedals() {
 	
-		return medals.get("Bronze medals");
+		return medals[2];
 	
 	}
 	
 	public void incrementGoldMedals(int amount) {
 		
-		medals.put("Gold medals", getGoldMedals() + amount);
+		medals[0] += amount;
 		
 	}
 	
 	public void incrementSilverMedals(int amount) {
 		
-		medals.put("Silver medals", getSilverMedals() + amount);
+		medals[1] += amount;
 		
 	}
 	
 	public void incrementBronzeMedals(int amount) {
 		
-		medals.put("Bronze medals", getBronzeMedals() + amount);
+		medals[2] += amount;
 		
 	}
 	
@@ -69,9 +59,9 @@ public class MedalCounter {
 	
 	public void resetMedals() {
 		
-		medals.put("Gold medals", 0);
-		medals.put("Silver medals", 0);
-		medals.put("Bronze medals", 0);
+		medals[0] = 0;
+		medals[1] = 0;
+		medals[2] = 0;
 		
 	}
 }

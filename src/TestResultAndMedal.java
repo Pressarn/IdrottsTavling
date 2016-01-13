@@ -200,7 +200,7 @@ public class TestResultAndMedal {
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
-		assertEquals("Sf\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
+		assertEquals("Sf\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
 				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
 		
 	}
@@ -219,9 +219,9 @@ public class TestResultAndMedal {
 				idrottsTävling.getResultsSortedByTeam().get(0).debugString());
 		assertEquals("Presidents\nGold medals: 1, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(1).debugString());
-		assertEquals("Sf\nGold medals: 0, Silver medals: 1, Bronze medals: 0\n",
+		assertEquals("Sf\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
 				idrottsTävling.getResultsSortedByTeam().get(2).debugString());
-		assertEquals("Historien\nGold medals: 0, Silver medals: 0, Bronze medals: 1\n",
+		assertEquals("Historien\nGold medals: 0, Silver medals: 0, Bronze medals: 0\n",
 				idrottsTävling.getResultsSortedByTeam().get(3).debugString());
 		
 	}
@@ -404,7 +404,7 @@ public class TestResultAndMedal {
 		
 		assertEquals("Computing\nGold medals: 2, Silver medals: 0, Bronze medals: 1\n",
 				teams.get(0).debugString());
-		assertEquals("Mash\nGold medals: 1, Silver medals: 1, Bronze medals: 2\n",
+		assertEquals("Mash\nGold medals: 1, Silver medals: 1, Bronze medals: 0\n",
 				teams.get(1).debugString());
 		assertEquals("Sf\nGold medals: 0, Silver medals: 4, Bronze medals: 0\n",
 				teams.get(2).debugString());
@@ -413,10 +413,12 @@ public class TestResultAndMedal {
 		
 		idrottsTävling.removeParticipant(adaLovelace);
 		
+		teams = idrottsTävling.getResultsSortedByTeam();
+		
 		assertEquals("Sf\nGold medals: 3, Silver medals: 1, Bronze medals: 0\n",
-				teams.get(1).debugString());
+				teams.get(0).debugString());
 		assertEquals("Mash\nGold medals: 2, Silver medals: 0, Bronze medals: 3\n",
-				teams.get(2).debugString());
+				teams.get(1).debugString());
 		assertEquals("Computing\nGold medals: 0, Silver medals: 0, Bronze medals: 0\n",
 				teams.get(2).debugString());
 		

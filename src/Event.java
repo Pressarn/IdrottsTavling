@@ -117,10 +117,10 @@ public class Event {
 			Result lastResult = i == 0 ? null : results.get(i - 1);
 			
 			boolean thereIsAPreviousResult = lastResult != null;
-			boolean currentResultIsNotEqualToLastResult = result.getResult() != lastResult.getResult();
+			boolean currentResultIsNotEqualToLastResult = thereIsAPreviousResult && (result.getResult() != lastResult.getResult());
 			boolean resultIsFirstResultAfterThreeConsecutiveEqualMedalResults = (numberOfMedals == 3) && (i == 3);
 			
-			if( (thereIsAPreviousResult && currentResultIsNotEqualToLastResult) || resultIsFirstResultAfterThreeConsecutiveEqualMedalResults ) {
+			if( currentResultIsNotEqualToLastResult || resultIsFirstResultAfterThreeConsecutiveEqualMedalResults ) {
 				
 				placementCounter = i + 1;
 				
