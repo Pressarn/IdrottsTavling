@@ -36,7 +36,7 @@ public class Event {
 		
 	}
 	
-	private Result resolveEqualResults(Result existingResult, Result newResult) {
+	private Result resolveEqualAchievees(Result existingResult, Result newResult) {
 		
 		if(newResult.getResult() > existingResult.getResult()) {
 			
@@ -56,7 +56,7 @@ public class Event {
 			
 			if(existingResult.getAchievee() == newResult.getAchievee()) {
 				
-				return resolveEqualResults(existingResult, newResult);
+				return resolveEqualAchievees(existingResult, newResult);
 				
 			}
 			
@@ -67,15 +67,12 @@ public class Event {
 	
 	public void addResult(Result result) {
 		
-		if(!(result.getAchievee().hasReachedMaximumNumberOfAttempts(this))) {
-		
-			Result resultToBeAdded = determineResultToBeAdded(result);
+		Result resultToBeAdded = determineResultToBeAdded(result);
 
-			if((resultToBeAdded != null)) {
+		if((resultToBeAdded != null)) {
 
-				results.add(resultToBeAdded);
+			results.add(resultToBeAdded);
 
-			}
 		}
 	}
 	

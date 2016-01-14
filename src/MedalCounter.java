@@ -13,19 +13,19 @@ public class MedalCounter {
 	 * På det här sättet blir det garanterat rätt.
 	 */
 	
-	public Integer getGoldMedals() {
+	public int getGoldMedals() {
 		
 		return medals[0];
 		
 	}
 	
-	public Integer getSilverMedals() {
+	public int getSilverMedals() {
 		
 		return medals[1];
 		
 	}
 
-	public Integer getBronzeMedals() {
+	public int getBronzeMedals() {
 	
 		return medals[2];
 	

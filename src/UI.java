@@ -62,7 +62,7 @@ public class UI {
 	private Event getEvent() {
 		
 		String eventName = inputHandler.readEventName();
-		return getEvent(eventName);
+		return idrottsTavling.getEvent(eventName);
 		
 	}
 	
