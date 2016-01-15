@@ -1,7 +1,7 @@
 
 /**
  * 
- * Simon Olofsson - siol0547
+ * @author simpa2k
  *
  * 
  *

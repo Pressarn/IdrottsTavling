@@ -1,12 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class IdrottsTavling {
 
 	private ArrayList<Event> events = new ArrayList<>();

@@ -2,12 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class Event {
 	
 	private String name;

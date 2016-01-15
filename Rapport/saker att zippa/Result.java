@@ -1,9 +1,3 @@
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 
 public class Result implements Comparable<Result>{
 

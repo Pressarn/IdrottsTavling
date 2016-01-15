@@ -1,11 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class Team implements Comparable<Team> {
 
   private String name;

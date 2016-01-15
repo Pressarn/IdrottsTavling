@@ -1,11 +1,5 @@
 import java.util.Scanner;
 
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class InputHandler {
 	
 	private int lastInt;

@@ -1,9 +1,3 @@
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class MedalCounter {
 
 	private int[] medals = new int[3];

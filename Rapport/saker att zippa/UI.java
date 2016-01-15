@@ -1,11 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * 
- * Simon Olofsson - siol0547
- * 
- */
-
 public class UI {
 	
 	private static final int MESSAGE_BOX_WIDTH = 60;
