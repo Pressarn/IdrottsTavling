@@ -114,11 +114,6 @@ public class Participant {
 	}
 	
 	public void calculateMedals() {
-		
-		/* 
-		 * Refaktorera, ta reda på varför switch-statementet inte fungerar, kan det vara något med Integer?
-		 * Man kan testa att inte returnera HashMap utan skriva tre separata metoder.
-		 */
 
 		medalCounter.resetMedals();
 		

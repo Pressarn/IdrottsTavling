@@ -72,12 +72,6 @@ public class UI {
 		
 	}
 	
-	/*
-	 * Fundera över om normalizeEvent verkligen ska ligga här, den gör att allt som kommer 
-	 * hit matchar det som finns lagrat vilket iofs är bra, men då kanske ett anrop till normalizeEvent
-	 * inte behövs i readEventName()?
-	 * 
-	 */
 	private Event getEvent(String eventName) {
 		
 		eventName = inputHandler.normalizeString(eventName);
@@ -124,15 +118,6 @@ public class UI {
 		
 	}
 	
-	/*
-	 * Fundera över den här. Ändrade ju från att lagra hos både participant och event till att bara skapa ett resultat och
-	 * sköta associationerna i konstruktorn.
-	 * Dock tänkte jag ju inte över att jag bara instantierade ett nytt resultat utan att lagra det någonstans.
-	 * Fixade det genom att introducera en resultatarraylist i programmet, men var det verkligen bra? Är det inte bättre att
-	 * bara spara resultatet hos participant och event?
-	 */
-	//Refaktorera, behöver resultat läggas till på två ställen? Samt Result och theActualResult? Fult. Frågan är om inte storlekschecken ska ske redan
-	// hos participanten
 	private void addResult() {
 		
 		Participant achievee = getParticipant();
@@ -239,7 +224,6 @@ public class UI {
 		
 	}
 	
-	//Refaktorera
 	private void listResultsByTeam() {
 			
 		ArrayList<Team> teams = idrottsTavling.getResultsSortedByTeam();
@@ -280,7 +264,6 @@ public class UI {
 		
 	}
 	
-	//Refaktorera
 	private void printMessage(String message) {
 		
 		message = message.replaceFirst("message", "");
@@ -388,7 +371,6 @@ public class UI {
 		
 	}
 	
-	//Refaktorera, använd array för kommandon plus for loop
 	private void handleCommand(String command) {
 		
 		if(getEvent(command) != null) {
@@ -464,7 +446,7 @@ public class UI {
 		while(true) {
 			
 			String command = inputHandler.readString("What would you like to do?\n> ");
-			handleCommand(command); //den här bör returnera boolean för att avsluta programmet
+			handleCommand(command);
 			
 		}
 		

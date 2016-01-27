@@ -12,8 +12,6 @@ public class InputHandler {
 	private String lastString;
 	
 	private Scanner scanner = new Scanner(System.in);
-
-	//Refaktorera, allting bör egentligen normaliseras, typ. Iaf trimmas.
 	
 	public int getLastInt() {
 		
@@ -71,7 +69,6 @@ public class InputHandler {
 
 	}
 	
-	//Refaktorera, bör man inte ha en allmän loopfunktion som kan återanvändas?
 	public double readResult() {
 		
 		double result = readDouble("Result: ");
@@ -116,8 +113,7 @@ public class InputHandler {
 		return name;
 		
 	}
-	
-	//Refaktorera
+
 	public String readEventName() {
 		
 		String eventName = readName("Event name: ");
@@ -126,12 +122,6 @@ public class InputHandler {
 		
 	}
 	
-	/*
-	 * Frågan är om det där variabelnamnet verkligen är så bra...
-	 * Samt, ska inte try-statementet bara omfatta substring-raden? Det är ju den som throwar
-	 * exception om man inte skriver in någonting.
-	 * 
-	 */
 	public String normalizeString(String stringToBeNormalized) {
 		
 		stringToBeNormalized = stringToBeNormalized.trim();

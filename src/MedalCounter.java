@@ -14,11 +14,6 @@ public class MedalCounter {
 		
 	}
 	
-	/*Anledningen till att det finns tre funktioner och inte en som tar valören som parameter är att
-	 * det bara finns tre tillåtna värden och det kan bli fel om man skulle börja hitta på andra benämningar.
-	 * På det här sättet blir det garanterat rätt.
-	 */
-	
 	public int getGoldMedals() {
 		
 		return medals[0];

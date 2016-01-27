@@ -89,7 +89,6 @@ public class Team implements Comparable<Team> {
 	  
   }
   
-  //Refaktorera, dela upp i flera delmetoder
   public int compareTo(Team anotherTeam) {
 	  
 	  if(medalCounter.getGoldMedals() > anotherTeam.medalCounter.getGoldMedals()) {
